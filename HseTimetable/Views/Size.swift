@@ -20,7 +20,7 @@ enum Size {
         switch self {
         case .common: return 5.0
         case .double: return Size.common.indent * 2
-        case .small: return 2.0
+        case .small: return 2.5
         case .large: return 20.0
         }
     }

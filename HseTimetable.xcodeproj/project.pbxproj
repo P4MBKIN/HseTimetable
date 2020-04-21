@@ -35,6 +35,24 @@
 		E946A158244D196000A3F07C /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A157244D196000A3F07C /* Size.swift */; };
 		E946A15A244D3F8600A3F07C /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A159244D3F8600A3F07C /* EventsTableViewCell.swift */; };
 		E946A15C244D7DB400A3F07C /* LessonsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A15B244D7DB400A3F07C /* LessonsProtocols.swift */; };
+		E946A15F244D7FCB00A3F07C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E946A15E244D7FCB00A3F07C /* RxSwift */; };
+		E946A161244D7FCB00A3F07C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E946A160244D7FCB00A3F07C /* RxCocoa */; };
+		E946A164244D7FF300A3F07C /* Action in Frameworks */ = {isa = PBXBuildFile; productRef = E946A163244D7FF300A3F07C /* Action */; };
+		E946A167244D809900A3F07C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E946A166244D809900A3F07C /* Realm */; };
+		E946A169244D809900A3F07C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E946A168244D809900A3F07C /* RealmSwift */; };
+		E946A16B244D842B00A3F07C /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16A244D842B00A3F07C /* Lesson.swift */; };
+		E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16C244E5FBE00A3F07C /* LessonsViewController.swift */; };
+		E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */; };
+		E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A170244E638600A3F07C /* LessonsSearchParams.swift */; };
+		E946A173244E66B000A3F07C /* LessonsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A172244E66B000A3F07C /* LessonsInteractor.swift */; };
+		E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A174244E6AEF00A3F07C /* LessonsError.swift */; };
+		E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A176244E70B800A3F07C /* DataServiceProtocol.swift */; };
+		E946A179244E70C700A3F07C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A178244E70C700A3F07C /* DataService.swift */; };
+		E946A17C244E721700A3F07C /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A17B244E721700A3F07C /* LessonModel.swift */; };
+		E946A17F244E750700A3F07C /* BaseOptionsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A17E244E750700A3F07C /* BaseOptionsProtocols.swift */; };
+		E946A181244E751200A3F07C /* BaseOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A180244E751200A3F07C /* BaseOptions.swift */; };
+		E946A183244E7FC600A3F07C /* LessonsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A182244E7FC600A3F07C /* LessonsRouter.swift */; };
+		E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +85,19 @@
 		E946A157244D196000A3F07C /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		E946A159244D3F8600A3F07C /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		E946A15B244D7DB400A3F07C /* LessonsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsProtocols.swift; sourceTree = "<group>"; };
+		E946A16A244D842B00A3F07C /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		E946A16C244E5FBE00A3F07C /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
+		E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsPresenter.swift; sourceTree = "<group>"; };
+		E946A170244E638600A3F07C /* LessonsSearchParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsSearchParams.swift; sourceTree = "<group>"; };
+		E946A172244E66B000A3F07C /* LessonsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsInteractor.swift; sourceTree = "<group>"; };
+		E946A174244E6AEF00A3F07C /* LessonsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsError.swift; sourceTree = "<group>"; };
+		E946A176244E70B800A3F07C /* DataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
+		E946A178244E70C700A3F07C /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		E946A17B244E721700A3F07C /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
+		E946A17E244E750700A3F07C /* BaseOptionsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOptionsProtocols.swift; sourceTree = "<group>"; };
+		E946A180244E751200A3F07C /* BaseOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOptions.swift; sourceTree = "<group>"; };
+		E946A182244E7FC600A3F07C /* LessonsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsRouter.swift; sourceTree = "<group>"; };
+		E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +105,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E946A169244D809900A3F07C /* RealmSwift in Frameworks */,
+				E946A164244D7FF300A3F07C /* Action in Frameworks */,
+				E946A161244D7FCB00A3F07C /* RxCocoa in Frameworks */,
+				E946A15F244D7FCB00A3F07C /* RxSwift in Frameworks */,
 				E946A14E244C5F6300A3F07C /* SnapKit in Frameworks */,
+				E946A167244D809900A3F07C /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +180,9 @@
 		E946A120244C151300A3F07C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E946A16A244D842B00A3F07C /* Lesson.swift */,
+				E946A174244E6AEF00A3F07C /* LessonsError.swift */,
+				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -165,6 +204,10 @@
 		E946A122244C156700A3F07C /* DataService */ = {
 			isa = PBXGroup;
 			children = (
+				E946A176244E70B800A3F07C /* DataServiceProtocol.swift */,
+				E946A178244E70C700A3F07C /* DataService.swift */,
+				E946A17D244E74ED00A3F07C /* BaseOptions */,
+				E946A17A244E720000A3F07C /* Models */,
 			);
 			path = DataService;
 			sourceTree = "<group>";
@@ -220,6 +263,11 @@
 		E946A146244C51AA00A3F07C /* Lessons */ = {
 			isa = PBXGroup;
 			children = (
+				E946A16C244E5FBE00A3F07C /* LessonsViewController.swift */,
+				E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */,
+				E946A172244E66B000A3F07C /* LessonsInteractor.swift */,
+				E946A182244E7FC600A3F07C /* LessonsRouter.swift */,
+				E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */,
 				E946A15B244D7DB400A3F07C /* LessonsProtocols.swift */,
 			);
 			path = Lessons;
@@ -252,6 +300,23 @@
 			path = Lessons;
 			sourceTree = "<group>";
 		};
+		E946A17A244E720000A3F07C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E946A17B244E721700A3F07C /* LessonModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E946A17D244E74ED00A3F07C /* BaseOptions */ = {
+			isa = PBXGroup;
+			children = (
+				E946A17E244E750700A3F07C /* BaseOptionsProtocols.swift */,
+				E946A180244E751200A3F07C /* BaseOptions.swift */,
+			);
+			path = BaseOptions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +335,11 @@
 			name = HseTimetable;
 			packageProductDependencies = (
 				E946A14D244C5F6300A3F07C /* SnapKit */,
+				E946A15E244D7FCB00A3F07C /* RxSwift */,
+				E946A160244D7FCB00A3F07C /* RxCocoa */,
+				E946A163244D7FF300A3F07C /* Action */,
+				E946A166244D809900A3F07C /* Realm */,
+				E946A168244D809900A3F07C /* RealmSwift */,
 			);
 			productName = HseTimetable;
 			productReference = E946A106244C131C00A3F07C /* HseTimetable.app */;
@@ -301,6 +371,9 @@
 			mainGroup = E946A0FD244C131C00A3F07C;
 			packageReferences = (
 				E946A14C244C5F6300A3F07C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E946A15D244D7FCB00A3F07C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				E946A162244D7FF300A3F07C /* XCRemoteSwiftPackageReference "Action" */,
+				E946A165244D809900A3F07C /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = E946A107244C131C00A3F07C /* Products */;
 			projectDirPath = "";
@@ -331,27 +404,40 @@
 			files = (
 				E946A15A244D3F8600A3F07C /* EventsTableViewCell.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
+				E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */,
+				E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */,
 				E946A139244C189100A3F07C /* BaseUrlHost.swift in Sources */,
 				E946A12F244C162800A3F07C /* NetStatus.swift in Sources */,
+				E946A17C244E721700A3F07C /* LessonModel.swift in Sources */,
 				E946A148244C51D500A3F07C /* LessonsTableViewCell.swift in Sources */,
+				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,
+				E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */,
 				E946A137244C187200A3F07C /* BaseUrl.swift in Sources */,
 				E946A126244C158E00A3F07C /* NetworkService.swift in Sources */,
+				E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */,
 				E946A124244C158300A3F07C /* NetworkServiceProtocol.swift in Sources */,
 				E946A13D244C18EA00A3F07C /* BaseUrlPath.swift in Sources */,
 				E946A135244C183D00A3F07C /* BaseMethod.swift in Sources */,
+				E946A16B244D842B00A3F07C /* Lesson.swift in Sources */,
 				E946A158244D196000A3F07C /* Size.swift in Sources */,
 				E946A145244C19D100A3F07C /* BaseRequest.swift in Sources */,
 				E946A156244D176600A3F07C /* Color.swift in Sources */,
 				E946A131244C171E00A3F07C /* BaseHeaders.swift in Sources */,
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
+				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
+				E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */,
 				E946A10E244C131C00A3F07C /* ViewController.swift in Sources */,
+				E946A17F244E750700A3F07C /* BaseOptionsProtocols.swift in Sources */,
 				E946A133244C179F00A3F07C /* BaseParams.swift in Sources */,
+				E946A179244E70C700A3F07C /* DataService.swift in Sources */,
 				E946A10A244C131C00A3F07C /* AppDelegate.swift in Sources */,
 				E946A150244C647B00A3F07C /* Extensions.swift in Sources */,
+				E946A173244E66B000A3F07C /* LessonsInteractor.swift in Sources */,
 				E946A13F244C192200A3F07C /* BaseDataResult.swift in Sources */,
 				E946A143244C19A200A3F07C /* BaseSession.swift in Sources */,
 				E946A15C244D7DB400A3F07C /* LessonsProtocols.swift in Sources */,
 				E946A10C244C131C00A3F07C /* SceneDelegate.swift in Sources */,
+				E946A183244E7FC600A3F07C /* LessonsRouter.swift in Sources */,
 				E946A12D244C15FD00A3F07C /* JsonUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +646,30 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		E946A15D244D7FCB00A3F07C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		E946A162244D7FF300A3F07C /* XCRemoteSwiftPackageReference "Action" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/Action";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+		E946A165244D809900A3F07C /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -567,6 +677,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E946A14C244C5F6300A3F07C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		E946A15E244D7FCB00A3F07C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E946A15D244D7FCB00A3F07C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		E946A160244D7FCB00A3F07C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E946A15D244D7FCB00A3F07C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		E946A163244D7FF300A3F07C /* Action */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E946A162244D7FF300A3F07C /* XCRemoteSwiftPackageReference "Action" */;
+			productName = Action;
+		};
+		E946A166244D809900A3F07C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E946A165244D809900A3F07C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		E946A168244D809900A3F07C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E946A165244D809900A3F07C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

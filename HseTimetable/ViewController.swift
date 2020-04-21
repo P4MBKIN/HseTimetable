@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(LessonsTableViewCell.self, forCellReuseIdentifier: LessonsTableViewCell.reuseId)
         tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.reuseId)
         // Do any additional setup after loading the view.
     }
@@ -27,11 +28,18 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.reuseId, for: indexPath) as? EventsTableViewCell else {
-            return UITableViewCell()
+        if (indexPath.row % 2 == 0) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LessonsTableViewCell.reuseId, for: indexPath) as? LessonsTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.set()
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.reuseId, for: indexPath) as? EventsTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
         }
-        //cell.set()
-        return cell
     }
 }
 
@@ -39,6 +47,10 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return EventsTableViewCell.cellHeight
+        if (indexPath.row % 2 == 0) {
+            return LessonsTableViewCell.cellHeight
+        } else {
+            return EventsTableViewCell.cellHeight
+        }
     }
 }

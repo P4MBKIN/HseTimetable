@@ -12,7 +12,7 @@ import SnapKit
 class LessonsTableViewCell: UITableViewCell {
     
     static let reuseId: String = "LessonsTableViewCell"
-    static let cellHeight: CGFloat = 180.0
+    static let cellHeight: CGFloat = 175.0
     
     // MARK:- UI Elements
     /// Container view for all other UI elements
@@ -154,7 +154,7 @@ class LessonsTableViewCell: UITableViewCell {
         self.dateLabel.text = "понедельник, 20 апреля 2020".uppercased()
         self.timeStartLabel.text = "09:30"
         self.timeEndLabel.text = "10:50"
-        self.typeLessonLabel.text = "Лекия"
+        self.typeLessonLabel.text = "Лекция"
         self.auditoriumLabel.text = "R405"
         self.disciplineLabel.text = "Основы информационных процессов, систем и сетей (рус)"
         self.adressLabel.text = "Шаболовка ул., д. 26-28"
@@ -214,9 +214,9 @@ class LessonsTableViewCell: UITableViewCell {
             self.contentView.addSubview(self.mainContainerView)
         }
         self.mainContainerView.snp.remakeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.edges.equalToSuperview().inset(
-                UIEdgeInsets(top: Size.double.indent, left: Size.large.indent, bottom: Size.double.indent, right: Size.large.indent)
+                UIEdgeInsets(top: Size.double.indent, left: Size.large.indent, bottom: Size.common.indent, right: Size.large.indent)
             )
         }
     }

@@ -12,7 +12,7 @@ import SnapKit
 class EventsTableViewCell: UITableViewCell {
     
     static let reuseId: String = "EventsTableViewCell"
-    static let cellHeight: CGFloat = 75.0
+    static let cellHeight: CGFloat = 50.0
     
     // MARK:- UI Elements
     /// Main stack for other UI elements
@@ -49,8 +49,8 @@ class EventsTableViewCell: UITableViewCell {
         return view
     }()
     
-    /// Container view for notification UI elements
-    private let notificationContainerView: UIView = {
+    /// Container view for reminder UI elements
+    private let reminderContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.clipsToBounds = true
@@ -91,9 +91,9 @@ class EventsTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let notificationButton: UIButton = {
+    private let reminderButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "notification"), for: .normal)
+        button.setImage(UIImage(named: "reminder"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.imageView?.tintColor = .gray
@@ -117,13 +117,13 @@ class EventsTableViewCell: UITableViewCell {
         setStackViewConstraints()
         setCalendarContainerViewConstraints()
         setNoteContainerViewConstraints()
-        setNotificationContainerViewConstraints()
+        setReminderContainerViewConstraints()
         setAlarmContainerViewConstraints()
         
         /// set label and images constraints
         setCalendarButtonConstraints()
         setNoteButtonConstraints()
-        setNotificationButtonConstraints()
+        setReminderButtonConstraints()
         setAlarmButtonConstraints()
     }
     
@@ -134,13 +134,13 @@ class EventsTableViewCell: UITableViewCell {
         setStackViewConstraints()
         setCalendarContainerViewConstraints()
         setNoteContainerViewConstraints()
-        setNotificationContainerViewConstraints()
+        setReminderContainerViewConstraints()
         setAlarmContainerViewConstraints()
         
         /// set label and images constraints
         setCalendarButtonConstraints()
         setNoteButtonConstraints()
-        setNotificationButtonConstraints()
+        setReminderButtonConstraints()
         setAlarmButtonConstraints()
     }
     
@@ -151,13 +151,13 @@ class EventsTableViewCell: UITableViewCell {
         }
         self.stackContainerView.snp.remakeConstraints{ make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(Size.double.indent)
-            make.bottom.equalToSuperview().inset(Size.double.indent)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.leading.greaterThanOrEqualToSuperview()
         }
         self.stackContainerView.addArrangedSubview(self.calendarContainerView)
         self.stackContainerView.addArrangedSubview(self.noteContainerView)
-        self.stackContainerView.addArrangedSubview(self.notificationContainerView)
+        self.stackContainerView.addArrangedSubview(self.reminderContainerView)
         self.stackContainerView.addArrangedSubview(self.alarmContainerView)
     }
     
@@ -184,14 +184,14 @@ class EventsTableViewCell: UITableViewCell {
         }
     }
     
-    private func setNotificationContainerViewConstraints() {
-        if self.notificationContainerView.superview == nil {
-            self.stackContainerView.addSubview(self.notificationContainerView)
+    private func setReminderContainerViewConstraints() {
+        if self.reminderContainerView.superview == nil {
+            self.stackContainerView.addSubview(self.reminderContainerView)
         }
-        self.notificationContainerView.snp.remakeConstraints { make in
+        self.reminderContainerView.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             make.width.equalTo(self.stackContainerView.snp.height)
-            make.height.equalTo(self.notificationContainerView.snp.width)
+            make.height.equalTo(self.reminderContainerView.snp.width)
         }
     }
     
@@ -202,7 +202,7 @@ class EventsTableViewCell: UITableViewCell {
         self.alarmContainerView.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             make.width.equalTo(self.stackContainerView.snp.height)
-            make.height.equalTo(self.notificationContainerView.snp.width)
+            make.height.equalTo(self.alarmContainerView.snp.width)
         }
     }
     
@@ -224,11 +224,11 @@ class EventsTableViewCell: UITableViewCell {
         }
     }
     
-    private func setNotificationButtonConstraints() {
-        if self.notificationButton.superview == nil {
-            self.notificationContainerView.addSubview(self.notificationButton)
+    private func setReminderButtonConstraints() {
+        if self.reminderButton.superview == nil {
+            self.reminderContainerView.addSubview(self.reminderButton)
         }
-        self.notificationButton.snp.remakeConstraints{ make in
+        self.reminderButton.snp.remakeConstraints{ make in
             make.edges.equalToSuperview().inset(Size.double.indent)
         }
     }
