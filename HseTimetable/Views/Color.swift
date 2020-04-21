@@ -12,6 +12,10 @@ import Foundation
 extension UIColor {
     static let lightBlue = UIColor(rgb: 0xc0e0f0)
     static let sortBlue = UIColor(rgb: 0x5591e6)
+    static let lightRed = UIColor(rgb: 0xf0c0c0)
+    static let softRed = UIColor(rgb: 0xe65555)
+    static let lightGreen = UIColor(rgb: 0xc0f0c0)
+    static let softGreen = UIColor(rgb: 0x57e655)
 }
 
 extension UIColor {

@@ -109,6 +109,13 @@ class EventsTableViewCell: UITableViewCell {
         return button
     }()
     
+    // MARK:- Interface
+    func setup(lesson: Lesson) {
+        self.contentView.clipsToBounds = true
+        self.selectionStyle = .none
+        setupColors(importance: lesson.importance)
+    }
+    
     // MARK:- Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -142,6 +149,27 @@ class EventsTableViewCell: UITableViewCell {
         setNoteButtonConstraints()
         setReminderButtonConstraints()
         setAlarmButtonConstraints()
+    }
+    
+    // MARK:- Setup data
+    private func setupColors(importance level: ImportanceLevel?) {
+        guard let level = level else { return }
+        
+        var lightColor: UIColor
+        
+        switch level {
+        case .hight:
+            lightColor = .lightRed
+        case .medium:
+            lightColor = .lightBlue
+        case .low:
+            lightColor = .lightGreen
+        }
+        
+        self.calendarContainerView.layer.borderColor = lightColor.cgColor
+        self.noteContainerView.layer.borderColor = lightColor.cgColor
+        self.reminderContainerView.layer.borderColor = lightColor.cgColor
+        self.alarmContainerView.layer.borderColor = lightColor.cgColor
     }
     
     // MARK:- Constraints containers

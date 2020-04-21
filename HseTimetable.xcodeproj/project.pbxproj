@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E946A10A244C131C00A3F07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A109244C131C00A3F07C /* AppDelegate.swift */; };
 		E946A10C244C131C00A3F07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A10B244C131C00A3F07C /* SceneDelegate.swift */; };
-		E946A10E244C131C00A3F07C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A10D244C131C00A3F07C /* ViewController.swift */; };
 		E946A111244C131C00A3F07C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946A10F244C131C00A3F07C /* Main.storyboard */; };
 		E946A113244C132400A3F07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E946A112244C132400A3F07C /* Assets.xcassets */; };
 		E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946A114244C132400A3F07C /* LaunchScreen.storyboard */; };
@@ -59,7 +58,6 @@
 		E946A106244C131C00A3F07C /* HseTimetable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HseTimetable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E946A109244C131C00A3F07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E946A10B244C131C00A3F07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E946A10D244C131C00A3F07C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E946A110244C131C00A3F07C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E946A112244C132400A3F07C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E946A115244C132400A3F07C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				E946A11E244C14F400A3F07C /* Services */,
 				E946A11D244C14CD00A3F07C /* Storyboards */,
 				E946A149244C5BCE00A3F07C /* Utils */,
-				E946A10D244C131C00A3F07C /* ViewController.swift */,
 				E946A112244C132400A3F07C /* Assets.xcassets */,
 				E946A117244C132400A3F07C /* Info.plist */,
 			);
@@ -426,7 +423,6 @@
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
 				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
 				E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */,
-				E946A10E244C131C00A3F07C /* ViewController.swift in Sources */,
 				E946A17F244E750700A3F07C /* BaseOptionsProtocols.swift in Sources */,
 				E946A133244C179F00A3F07C /* BaseParams.swift in Sources */,
 				E946A179244E70C700A3F07C /* DataService.swift in Sources */,

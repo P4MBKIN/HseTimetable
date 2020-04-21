@@ -22,6 +22,7 @@ protocol LessonsPresenterInputsProtocol: class {
 
 /// PRESENTER -> VIEW
 protocol LessonsPresenterOutputsProtocol: class {
+    var opens: [Bool] { get set }
     var lessons: BehaviorRelay<[Lesson]> { get }
     var error: PublishSubject<Error> { get }
 }

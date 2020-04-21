@@ -37,11 +37,43 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         self.searchLessonsAction = Action { params in return LessonsInteractor.getLessonsFromNetwork(params: params) }
         
         /// Inputs setup
+        self.dataBaseLessonsTrigger.asObserver()
+            .bind(to: self.dbGetAction.inputs)
+            .disposed(by: disposeBag)
+        
+        self.searchLessonsTrigger.asObserver()
+            .bind(to: self.searchLessonsAction.inputs)
+            .disposed(by: disposeBag)
         
         /// Outputs setup
+        self.dbGetAction.elements.asObservable()
+            .bind(to: self.searchLessonsResponse)
+            .disposed(by: disposeBag)
+        
+        self.dbUpdateAction.elements.asObservable()
+            .bind(to: self.dbGetAction.inputs)
+            .disposed(by: disposeBag)
+        
+        self.searchLessonsAction.elements.asObservable()
+            .bind(to: self.dbUpdateAction.inputs)
+            .disposed(by: disposeBag)
         
         /// Errors setup
-        
+        self.dbGetAction.errors.asObservable()
+            .subscribe(onNext: { [weak self] error in
+                self?.searchLessonsResponse.onError(error)
+            })
+            .disposed(by: disposeBag)
+        self.dbUpdateAction.errors.asObservable()
+            .subscribe(onNext: { [weak self] error in
+                self?.searchLessonsResponse.onError(error)
+            })
+            .disposed(by: disposeBag)
+        self.searchLessonsAction.errors.asObservable()
+            .subscribe(onNext: { [weak self] error in
+                self?.searchLessonsResponse.onError(error)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

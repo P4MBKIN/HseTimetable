@@ -149,16 +149,12 @@ class LessonsTableViewCell: UITableViewCell {
     }()
     
     // MARK:- Interface
-    func set() {
+    func setup(lesson: Lesson) {
         self.contentView.clipsToBounds = true
-        self.dateLabel.text = "понедельник, 20 апреля 2020".uppercased()
-        self.timeStartLabel.text = "09:30"
-        self.timeEndLabel.text = "10:50"
-        self.typeLessonLabel.text = "Лекция"
-        self.auditoriumLabel.text = "R405"
-        self.disciplineLabel.text = "Основы информационных процессов, систем и сетей (рус)"
-        self.adressLabel.text = "Шаболовка ул., д. 26-28"
-        self.lecturerLabel.text = "проф. Климов Борис Анатольевич"
+        self.selectionStyle = .none
+        setupColors(importance: lesson.importance)
+        setupDateData(dateStart: lesson.dateStart, dateEnd: lesson.dateEnd)
+        setupLessonData(adress: lesson.adress, type: lesson.type, lecturer: lesson.lecturer, auditorium: lesson.auditorium, discipline: lesson.discipline)
     }
     
     // MARK:- Lifecycle
@@ -206,6 +202,52 @@ class LessonsTableViewCell: UITableViewCell {
         setAdressLabelConstraints()
         setLecturerImageViewConstraints()
         setLecturerLabelConstraints()
+    }
+    
+    // MARK:- Setup data
+    private func setupColors(importance level: ImportanceLevel?) {
+        guard let level = level else { return }
+        
+        var lightColor: UIColor
+        var softColor: UIColor
+        
+        switch level {
+        case .hight:
+            lightColor = .lightRed
+            softColor = .softRed
+        case .medium:
+            lightColor = .lightBlue
+            softColor = .sortBlue
+        case .low:
+            lightColor = .lightGreen
+            softColor = .softGreen
+        }
+        
+        self.mainContainerView.backgroundColor = lightColor
+        self.typeLessonLabel.textColor = softColor
+        self.auditoriumImageView.tintColor = softColor
+        self.adressImageView.tintColor = softColor
+        self.lecturerImageView.tintColor = softColor
+    }
+    
+    private func setupDateData(dateStart: Date?, dateEnd: Date?) {
+        guard let dateStart = dateStart, let dateEnd = dateEnd else { return }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru-RU")
+        formatter.setLocalizedDateFormatFromTemplate("EEEE, d MMMM yyyy")
+        self.dateLabel.text = formatter.string(from: dateStart).uppercased()
+        formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        self.timeStartLabel.text = formatter.string(from: dateStart)
+        self.timeEndLabel.text = formatter.string(from: dateEnd)
+        
+    }
+    
+    private func setupLessonData(adress: String?, type: String?, lecturer: String?, auditorium: String?, discipline: String?) {
+        self.adressLabel.text = adress
+        self.typeLessonLabel.text = type
+        self.lecturerLabel.text = lecturer
+        self.auditoriumLabel.text = auditorium
+        self.disciplineLabel.text = discipline
     }
     
     // MARK:- Constraints containers

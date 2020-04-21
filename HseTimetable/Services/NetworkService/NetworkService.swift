@@ -15,12 +15,16 @@ class NetworkService: NetworkServiceProtocol {
                                                              dateFrom: Date,
                                                              completion: @escaping ((Model?, ErrorModel?, Error?) -> Void)) {
         var params = [String: String]()
-        params["studnet"] = String(studentId)
+        params["student"] = String(studentId)
+        
         params["offset"] = String(daysOffset)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         params["start"] = formatter.string(from: dateFrom)
+        
+//        params["student"] = "165773"
+//        params["start"] = "2019-12-16"
         
         BaseDataResult.lessons.requestDataResult(params: params, addHeaders: nil) { (data, error) in
             guard let data = data else { return completion(nil, nil, BaseResultError.nilDataError) }
