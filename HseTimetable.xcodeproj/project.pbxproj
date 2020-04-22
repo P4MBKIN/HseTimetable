@@ -63,6 +63,7 @@
 		E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A22450111100A3F07C /* CalendarProtocols.swift */; };
 		E946A1A824501D0400A3F07C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A724501D0400A3F07C /* Protocols.swift */; };
 		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
+		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		E946A1A22450111100A3F07C /* CalendarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocols.swift; sourceTree = "<group>"; };
 		E946A1A724501D0400A3F07C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				E946A174244E6AEF00A3F07C /* LessonsError.swift */,
 				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 				E946A188244EED9400A3F07C /* EventSegue.swift */,
+				E946A1AB24509D3200A3F07C /* CalendarEventData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				E946A17C244E721700A3F07C /* LessonModel.swift in Sources */,
 				E946A148244C51D500A3F07C /* LessonsTableViewCell.swift in Sources */,
 				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,
+				E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */,
 				E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */,
 				E946A1A12450110400A3F07C /* CalendarConfigurator.swift in Sources */,
 				E946A137244C187200A3F07C /* BaseUrl.swift in Sources */,

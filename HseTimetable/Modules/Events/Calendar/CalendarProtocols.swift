@@ -6,6 +6,8 @@
 //  Copyright © 2020 Hse. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
 import Foundation
 
 protocol CalendarViewProtocol: class {
@@ -14,12 +16,12 @@ protocol CalendarViewProtocol: class {
 
 /// VIEW -> PRESENTER
 protocol CalendarPresenterInputsProtocol: class {
-    
+    var viewDidLoadTrigger: PublishSubject<Void> { get }
 }
 
 /// PRESENTER -> VIEW
 protocol CalendarPresenterOutputsProtocol: class {
-    
+    var viewConfigure: Observable<CalendarEventData> { get }
 }
 
 typealias CalendarPresenterDependencies = (
