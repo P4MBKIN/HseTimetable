@@ -27,6 +27,8 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     }
     
     private func setup() {
+        self.navigationController?.isNavigationBarHidden = true
+        
         self.lessonsTableView.register(LessonsTableViewCell.self, forCellReuseIdentifier: LessonsTableViewCell.reuseId)
         self.lessonsTableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.reuseId)
         
@@ -57,8 +59,26 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
     }
     
+    
+    // MARK:- Views events
     @objc private func refreshControlValueChanged(sender: UIRefreshControl) {
         self.presenter.inputs.refreshControlTrigger.onNext(())
+    }
+    
+    @objc private func calendarButtonTouchUpInside(sender: UIButton) {
+        self.presenter.inputs.didSelectLessonTrigger.onNext((sender.tag, EventSegueType.lessonsToCalendar(.present)))
+    }
+    
+    @objc private func noteButtonTouchUpInside(sender: UIButton) {
+        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToNote))
+    }
+    
+    @objc private func reminderButtonTouchUpInside(sender: UIButton) {
+        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToReminder))
+    }
+    
+    @objc private func alarmButtonTouchUpInside(sender: UIButton) {
+        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToAlarm))
     }
 }
 
@@ -81,6 +101,14 @@ extension LessonsViewController: UITableViewDataSource {
             let cell = self.lessonsTableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.reuseId) as? EventsTableViewCell
             guard let eventsCell = cell else { return UITableViewCell() }
             eventsCell.setup(lesson: self.presenter.outputs.lessons.value[indexPath.section])
+            eventsCell.calendarButton.tag = indexPath.section
+            eventsCell.noteButton.tag = indexPath.section
+            eventsCell.reminderButton.tag = indexPath.section
+            eventsCell.alarmButton.tag = indexPath.section
+            eventsCell.calendarButton.addTarget(self, action: #selector(calendarButtonTouchUpInside(sender:)), for: .touchUpInside)
+            eventsCell.noteButton.addTarget(self, action: #selector(noteButtonTouchUpInside(sender:)), for: .touchUpInside)
+            eventsCell.reminderButton.addTarget(self, action: #selector(reminderButtonTouchUpInside(sender:)), for: .touchUpInside)
+            eventsCell.alarmButton.addTarget(self, action: #selector(alarmButtonTouchUpInside(sender:)), for: .touchUpInside)
             return eventsCell
         }
     }
@@ -110,3 +138,6 @@ extension LessonsViewController: UITableViewDelegate {
         self.lessonsTableView.reloadSections(sections, with: .none)
     }
 }
+
+// MARK:- Viewable
+extension LessonsViewController: Viewable {}

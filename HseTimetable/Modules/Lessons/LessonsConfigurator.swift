@@ -10,10 +10,13 @@ import Foundation
 
 final class LessonsConfigurator: LessonsConfiguratorProtocol {
     
-    func configure(with viewController: LessonsViewProtocol) {
-        let router: LessonsRouterProtocol = LessonsRouter()
+    func configure(with viewController: LessonsViewController) {
         let interactor: LessonsInteractorProtocol = LessonsInteractor()
+        let router: LessonsRouterProtocol = LessonsRouter(view: viewController)
         let presenter: LessonsPresenterProtocol = LessonsPresenter(dependencies: (interactor: interactor, router: router))
         viewController.presenter = presenter
     }
 }
+
+//MARK:- Configuratorable
+extension LessonsConfigurator: Configuratorable {}

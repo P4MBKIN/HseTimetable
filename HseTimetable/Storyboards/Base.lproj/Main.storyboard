@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BjW-Ld-mgs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4C6-Se-Z2C">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,39 +8,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Lessons View Controller-->
-        <scene sceneID="i37-gr-5xs">
+        <!--Navigation Controller-->
+        <scene sceneID="YLH-YS-X3D">
             <objects>
-                <viewController id="BjW-Ld-mgs" customClass="LessonsViewController" customModule="HseTimetable" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CSQ-7K-k1y">
+                <navigationController id="4C6-Se-Z2C" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KCY-Pz-9uZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="01W-CQ-mdV" kind="relationship" relationship="rootViewController" id="znq-PM-Px6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bf5-nP-IjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-851" y="134"/>
+        </scene>
+        <!--Lessons View Controller-->
+        <scene sceneID="ek5-mv-mze">
+            <objects>
+                <viewController id="01W-CQ-mdV" customClass="LessonsViewController" customModule="HseTimetable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yla-28-0jG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ziz-oa-8yr">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-ON-bT6">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BjW-Ld-mgs" id="8ql-lb-hHb"/>
-                                    <outlet property="delegate" destination="BjW-Ld-mgs" id="YZr-DP-zdB"/>
+                                    <outlet property="dataSource" destination="01W-CQ-mdV" id="HUF-dY-zX0"/>
+                                    <outlet property="delegate" destination="01W-CQ-mdV" id="GZI-s0-MFD"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ziz-oa-8yr" firstAttribute="leading" secondItem="gfc-mG-hDS" secondAttribute="leading" id="AVn-xf-5h7"/>
-                            <constraint firstItem="ziz-oa-8yr" firstAttribute="top" secondItem="gfc-mG-hDS" secondAttribute="top" id="Abo-oC-D7P"/>
-                            <constraint firstItem="gfc-mG-hDS" firstAttribute="trailing" secondItem="ziz-oa-8yr" secondAttribute="trailing" id="GKj-Xt-icm"/>
-                            <constraint firstItem="gfc-mG-hDS" firstAttribute="bottom" secondItem="ziz-oa-8yr" secondAttribute="bottom" id="Jf4-eX-Zic"/>
+                            <constraint firstItem="RV9-9M-66o" firstAttribute="bottom" secondItem="WbK-ON-bT6" secondAttribute="bottom" id="73E-9G-iwa"/>
+                            <constraint firstItem="RV9-9M-66o" firstAttribute="trailing" secondItem="WbK-ON-bT6" secondAttribute="trailing" id="EJG-FC-jwu"/>
+                            <constraint firstItem="WbK-ON-bT6" firstAttribute="top" secondItem="RV9-9M-66o" secondAttribute="top" id="HnZ-pu-g1E"/>
+                            <constraint firstItem="WbK-ON-bT6" firstAttribute="leading" secondItem="RV9-9M-66o" secondAttribute="leading" id="mFB-bq-vHi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="gfc-mG-hDS"/>
+                        <viewLayoutGuide key="safeArea" id="RV9-9M-66o"/>
                     </view>
+                    <navigationItem key="navigationItem" id="c6Y-RJ-3uZ"/>
                     <connections>
-                        <outlet property="lessonsTableView" destination="ziz-oa-8yr" id="g3K-s9-gCf"/>
+                        <outlet property="lessonsTableView" destination="WbK-ON-bT6" id="395-Kg-wy6"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t2A-h0-2F4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LfL-pb-CeM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="186" y="143"/>
+            <point key="canvasLocation" x="77" y="134"/>
         </scene>
     </scenes>
 </document>

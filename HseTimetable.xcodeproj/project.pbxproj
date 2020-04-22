@@ -52,6 +52,17 @@
 		E946A181244E751200A3F07C /* BaseOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A180244E751200A3F07C /* BaseOptions.swift */; };
 		E946A183244E7FC600A3F07C /* LessonsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A182244E7FC600A3F07C /* LessonsRouter.swift */; };
 		E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */; };
+		E946A189244EED9400A3F07C /* EventSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A188244EED9400A3F07C /* EventSegue.swift */; };
+		E946A18C244F0A7F00A3F07C /* EventServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A18B244F0A7F00A3F07C /* EventServiceProtocol.swift */; };
+		E946A18E244F0A8800A3F07C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A18D244F0A8800A3F07C /* EventService.swift */; };
+		E946A199245010C700A3F07C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A198245010C700A3F07C /* CalendarViewController.swift */; };
+		E946A19B245010DA00A3F07C /* CalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A19A245010DA00A3F07C /* CalendarPresenter.swift */; };
+		E946A19D245010E500A3F07C /* CalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A19C245010E500A3F07C /* CalendarInteractor.swift */; };
+		E946A19F245010F200A3F07C /* CalendarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A19E245010F200A3F07C /* CalendarRouter.swift */; };
+		E946A1A12450110400A3F07C /* CalendarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A02450110400A3F07C /* CalendarConfigurator.swift */; };
+		E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A22450111100A3F07C /* CalendarProtocols.swift */; };
+		E946A1A824501D0400A3F07C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A724501D0400A3F07C /* Protocols.swift */; };
+		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +107,17 @@
 		E946A180244E751200A3F07C /* BaseOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOptions.swift; sourceTree = "<group>"; };
 		E946A182244E7FC600A3F07C /* LessonsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsRouter.swift; sourceTree = "<group>"; };
 		E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsConfigurator.swift; sourceTree = "<group>"; };
+		E946A188244EED9400A3F07C /* EventSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSegue.swift; sourceTree = "<group>"; };
+		E946A18B244F0A7F00A3F07C /* EventServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceProtocol.swift; sourceTree = "<group>"; };
+		E946A18D244F0A8800A3F07C /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		E946A198245010C700A3F07C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E946A19A245010DA00A3F07C /* CalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenter.swift; sourceTree = "<group>"; };
+		E946A19C245010E500A3F07C /* CalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarInteractor.swift; sourceTree = "<group>"; };
+		E946A19E245010F200A3F07C /* CalendarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRouter.swift; sourceTree = "<group>"; };
+		E946A1A02450110400A3F07C /* CalendarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfigurator.swift; sourceTree = "<group>"; };
+		E946A1A22450111100A3F07C /* CalendarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocols.swift; sourceTree = "<group>"; };
+		E946A1A724501D0400A3F07C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +182,7 @@
 		E946A11E244C14F400A3F07C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E946A18A244F0A4F00A3F07C /* EventService */,
 				E946A122244C156700A3F07C /* DataService */,
 				E946A121244C155900A3F07C /* NetworkService */,
 			);
@@ -169,7 +192,9 @@
 		E946A11F244C150200A3F07C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E946A1942450075100A3F07C /* Events */,
 				E946A146244C51AA00A3F07C /* Lessons */,
+				E946A1A724501D0400A3F07C /* Protocols.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -180,6 +205,7 @@
 				E946A16A244D842B00A3F07C /* Lesson.swift */,
 				E946A174244E6AEF00A3F07C /* LessonsError.swift */,
 				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
+				E946A188244EED9400A3F07C /* EventSegue.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -314,6 +340,37 @@
 			path = BaseOptions;
 			sourceTree = "<group>";
 		};
+		E946A18A244F0A4F00A3F07C /* EventService */ = {
+			isa = PBXGroup;
+			children = (
+				E946A18B244F0A7F00A3F07C /* EventServiceProtocol.swift */,
+				E946A18D244F0A8800A3F07C /* EventService.swift */,
+			);
+			path = EventService;
+			sourceTree = "<group>";
+		};
+		E946A1942450075100A3F07C /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				E946A197245010AB00A3F07C /* Calendar */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		E946A197245010AB00A3F07C /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E946A198245010C700A3F07C /* CalendarViewController.swift */,
+				E946A19A245010DA00A3F07C /* CalendarPresenter.swift */,
+				E946A19C245010E500A3F07C /* CalendarInteractor.swift */,
+				E946A19E245010F200A3F07C /* CalendarRouter.swift */,
+				E946A1A02450110400A3F07C /* CalendarConfigurator.swift */,
+				E946A1A22450111100A3F07C /* CalendarProtocols.swift */,
+				E946A1A9245054D400A3F07C /* CalendarViewController.xib */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,6 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */,
 				E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */,
 				E946A113244C132400A3F07C /* Assets.xcassets in Resources */,
 				E946A111244C131C00A3F07C /* Main.storyboard in Resources */,
@@ -399,20 +457,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E946A199245010C700A3F07C /* CalendarViewController.swift in Sources */,
+				E946A1A824501D0400A3F07C /* Protocols.swift in Sources */,
 				E946A15A244D3F8600A3F07C /* EventsTableViewCell.swift in Sources */,
+				E946A189244EED9400A3F07C /* EventSegue.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
 				E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */,
+				E946A19F245010F200A3F07C /* CalendarRouter.swift in Sources */,
 				E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */,
 				E946A139244C189100A3F07C /* BaseUrlHost.swift in Sources */,
 				E946A12F244C162800A3F07C /* NetStatus.swift in Sources */,
+				E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */,
+				E946A19D245010E500A3F07C /* CalendarInteractor.swift in Sources */,
 				E946A17C244E721700A3F07C /* LessonModel.swift in Sources */,
 				E946A148244C51D500A3F07C /* LessonsTableViewCell.swift in Sources */,
 				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,
 				E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */,
+				E946A1A12450110400A3F07C /* CalendarConfigurator.swift in Sources */,
 				E946A137244C187200A3F07C /* BaseUrl.swift in Sources */,
 				E946A126244C158E00A3F07C /* NetworkService.swift in Sources */,
 				E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */,
 				E946A124244C158300A3F07C /* NetworkServiceProtocol.swift in Sources */,
+				E946A19B245010DA00A3F07C /* CalendarPresenter.swift in Sources */,
 				E946A13D244C18EA00A3F07C /* BaseUrlPath.swift in Sources */,
 				E946A135244C183D00A3F07C /* BaseMethod.swift in Sources */,
 				E946A16B244D842B00A3F07C /* Lesson.swift in Sources */,
@@ -422,6 +488,8 @@
 				E946A131244C171E00A3F07C /* BaseHeaders.swift in Sources */,
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
 				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
+				E946A18E244F0A8800A3F07C /* EventService.swift in Sources */,
+				E946A18C244F0A7F00A3F07C /* EventServiceProtocol.swift in Sources */,
 				E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */,
 				E946A17F244E750700A3F07C /* BaseOptionsProtocols.swift in Sources */,
 				E946A133244C179F00A3F07C /* BaseParams.swift in Sources */,

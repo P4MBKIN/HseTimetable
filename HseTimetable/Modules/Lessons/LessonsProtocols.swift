@@ -11,13 +11,14 @@ import RxCocoa
 import Foundation
 
 protocol LessonsViewProtocol: class {
-    var presenter: LessonsPresenterProtocol! { get set}
+    var presenter: LessonsPresenterProtocol! { get set }
 }
 
 /// VIEW -> PRESENTER
 protocol LessonsPresenterInputsProtocol: class {
     var viewDidLoadTrigger: PublishSubject<Void> { get }
     var refreshControlTrigger: PublishSubject<Void> { get }
+    var didSelectLessonTrigger: PublishSubject<(Int, EventSegueType)> { get }
 }
 
 /// PRESENTER -> VIEW
@@ -33,8 +34,7 @@ typealias LessonsPresenterDependencies = (
 )
 
 protocol LessonsPresenterProtocol: class {
-    var interactor: LessonsInteractorProtocol! { get set }
-    var router: LessonsRouterProtocol! { get set }
+    var dependencies: LessonsPresenterDependencies! { get }
     var inputs: LessonsPresenterInputsProtocol { get }
     var outputs: LessonsPresenterOutputsProtocol { get }
 }
@@ -55,9 +55,15 @@ protocol LessonsInteractorProtocol: class {
     var outputs: LessonsInteractorOutputsProtocol { get }
 }
 
+/// PRESENTER -> ROUTER
+protocol LessonsRouterInputsProtocol: class {
+    var presentLessonEvent: PublishSubject<(Lesson, EventSegueType)> { get }
+}
+
 protocol LessonsRouterProtocol: class {
+    var inputs: LessonsRouterInputsProtocol { get }
 }
 
 protocol LessonsConfiguratorProtocol: class {
-    func configure(with viewController: LessonsViewProtocol)
+    func configure(with viewController: LessonsViewController)
 }

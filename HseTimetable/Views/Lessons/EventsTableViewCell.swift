@@ -73,7 +73,7 @@ class EventsTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let calendarButton: UIButton = {
+    let calendarButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "calendar"), for: .normal)
         button.contentVerticalAlignment = .fill
@@ -82,7 +82,7 @@ class EventsTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let noteButton: UIButton = {
+    let noteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "note"), for: .normal)
         button.contentVerticalAlignment = .fill
@@ -91,7 +91,7 @@ class EventsTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let reminderButton: UIButton = {
+    let reminderButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "reminder"), for: .normal)
         button.contentVerticalAlignment = .fill
@@ -100,7 +100,7 @@ class EventsTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let alarmButton: UIButton = {
+    let alarmButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "alarm"), for: .normal)
         button.contentVerticalAlignment = .fill

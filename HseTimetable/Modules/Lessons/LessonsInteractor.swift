@@ -31,7 +31,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     static private let dataService: DataServiceProtocol = DataService()
     static private let networkService: NetworkServiceProtocol = NetworkService()
     
-    init() {
+    required init() {
         self.dbGetAction = Action { return LessonsInteractor.getLessonsFromDB() }
         self.dbUpdateAction = Action { lessons in return LessonsInteractor.updateLessonsToDB(lessons: lessons) }
         self.searchLessonsAction = Action { params in return LessonsInteractor.getLessonsFromNetwork(params: params) }
@@ -129,3 +129,6 @@ extension LessonsInteractor {
         }
     }
 }
+
+//MARK:- Interactorable
+extension LessonsInteractor: Interactorable {}

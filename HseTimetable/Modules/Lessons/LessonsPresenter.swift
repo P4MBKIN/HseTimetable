@@ -12,8 +12,7 @@ import Foundation
 
 final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsProtocol, LessonsPresenterOutputsProtocol {
     
-    var interactor: LessonsInteractorProtocol!
-    var router: LessonsRouterProtocol!
+    let dependencies: LessonsPresenterDependencies!
     
     var inputs: LessonsPresenterInputsProtocol { return self }
     var outputs: LessonsPresenterOutputsProtocol { return self }
@@ -21,6 +20,7 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     /// Inputs
     let viewDidLoadTrigger = PublishSubject<Void>()
     let refreshControlTrigger = PublishSubject<Void>()
+    let didSelectLessonTrigger = PublishSubject<(Int, EventSegueType)>()
     
     /// Outputs
     var opens = [Bool]()
@@ -31,23 +31,27 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     private let disposeBag = DisposeBag()
     
     required init(dependencies: LessonsPresenterDependencies) {
-        self.interactor = dependencies.interactor
-        self.router = dependencies.router
+        self.dependencies = dependencies
         
         self.lessonsSearchParams = LessonsSearchParams(studentId: 203843, daysOffset: 7, dateFrom: Date.init())
         
         /// Inputs setup
         self.viewDidLoadTrigger.asObserver()
-            .bind(to: self.interactor.inputs.dataBaseLessonsTrigger)
+            .bind(to: self.dependencies.interactor.inputs.dataBaseLessonsTrigger)
             .disposed(by: disposeBag)
         
         self.refreshControlTrigger.asObserver()
             .withLatestFrom(Observable.just(self.lessonsSearchParams))
-            .bind(to: self.interactor.inputs.searchLessonsTrigger)
+            .bind(to: self.dependencies.interactor.inputs.searchLessonsTrigger)
+            .disposed(by: disposeBag)
+        
+        self.didSelectLessonTrigger.asObservable()
+            .map{ (self.lessons.value[$0.0], $0.1) }
+            .bind(to: self.dependencies.router.inputs.presentLessonEvent)
             .disposed(by: disposeBag)
         
         /// Outputs setup
-        self.interactor.outputs.searchLessonsResponse
+        self.dependencies.interactor.outputs.searchLessonsResponse
             .subscribe(onNext: { [weak self] list in
                 self?.lessons.accept(list)
                 self?.opens = Array(repeating: false, count: list.count)
@@ -57,3 +61,6 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
         .disposed(by: disposeBag)
     }
 }
+
+//MARK:- Presenterable
+extension LessonsPresenter: Presenterable {}
