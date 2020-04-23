@@ -27,12 +27,12 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
         /// Setup inputs
         self.presentLessonEvent.asObserver()
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { lesson, segue in
+            .subscribe(onNext: { [unowned self] lesson, segue in
                 switch segue {
                 case .lessonsToCalendar(let type):
                     let calendarConfigurator: CalendarConfiguratorProtocol = CalendarConfigurator()
-                    if type == .present { calendarConfigurator.configureWithPresent(from: view, lesson: lesson) }
-                    else if type == .push { calendarConfigurator.configureWithPush(from: view, lesson: lesson) }
+                    if type == .present { calendarConfigurator.configureWithPresent(from: self.view, lesson: lesson) }
+                    else if type == .push { calendarConfigurator.configureWithPush(from: self.view, lesson: lesson) }
                 case .lessonsToNote(_): return
                 case .lessonsToReminder(_): return
                 case .lessonsToAlarm(_): return

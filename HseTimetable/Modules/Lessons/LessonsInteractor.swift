@@ -22,6 +22,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     
     /// Outputs
     let searchLessonsResponse = PublishSubject<[Lesson]>()
+    let errorResponse = PublishSubject<Error>()
     
     private let dbGetAction: Action<Void, [Lesson]>
     private let dbUpdateAction: Action<[Lesson], Void>
@@ -60,19 +61,18 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         
         /// Errors setup
         self.dbGetAction.errors.asObservable()
-            .subscribe(onNext: { [weak self] error in
-                self?.searchLessonsResponse.onError(error)
-            })
+            .map{ $0.get() }
+            .bind(to: self.errorResponse)
             .disposed(by: disposeBag)
+        
         self.dbUpdateAction.errors.asObservable()
-            .subscribe(onNext: { [weak self] error in
-                self?.searchLessonsResponse.onError(error)
-            })
+            .map{ $0.get() }
+            .bind(to: self.errorResponse)
             .disposed(by: disposeBag)
+        
         self.searchLessonsAction.errors.asObservable()
-            .subscribe(onNext: { [weak self] error in
-                self?.searchLessonsResponse.onError(error)
-            })
+            .map{ $0.get() }
+            .bind(to: self.errorResponse)
             .disposed(by: disposeBag)
     }
 }

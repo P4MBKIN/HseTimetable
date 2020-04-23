@@ -8,10 +8,8 @@
 
 import Foundation
 
-typealias EventData = (adress: String?, type: String?, lecturer: String?, auditorium: String?, dateStart: Date?, dateEnd: Date?, importance: Int?, discipline: String?)
-
 protocol CalendarEventProtocol {
-    func createCalendarEvent(data: EventData) -> Error?
+    func createCalendarEvent(data: CalendarEventData) -> Error?
 }
 
 protocol EventServiceProtocol: CalendarEventProtocol {

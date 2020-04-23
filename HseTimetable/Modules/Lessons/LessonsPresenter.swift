@@ -51,14 +51,16 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
             .disposed(by: disposeBag)
         
         /// Outputs setup
-        self.dependencies.interactor.outputs.searchLessonsResponse
+        self.dependencies.interactor.outputs.searchLessonsResponse.asObservable()
             .subscribe(onNext: { [weak self] list in
                 self?.lessons.accept(list)
                 self?.opens = Array(repeating: false, count: list.count)
-            }, onError: { [weak self] e in
-                self?.error.onNext(e)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        self.dependencies.interactor.outputs.errorResponse.asObservable()
+            .bind(to: self.error)
+            .disposed(by: disposeBag)
     }
 }
 

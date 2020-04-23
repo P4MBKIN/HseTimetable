@@ -16,38 +16,63 @@ class EventService: EventServiceProtocol {
 
 extension EventService: CalendarEventProtocol {
     
-    func createCalendarEvent(data: EventData) -> Error? {
-        if let error = checkEventKitAccess() { return error }
-        
-        let calendars = eventStore.calendars(for: .event)
-        
-        
+    func createCalendarEvent(data: CalendarEventData) -> Error? {
+        if let error = checkEventKitAccess(for: .event) { return error }
+        if checkCalendarEventAlreadyExists(data: data) { return EventServiceError.eventCalendarAlreadyExists }
+        let event = generateCalendarEvent(data: data)
+        do {
+            try eventStore.save(event, span: .thisEvent)
+        } catch let err {
+            return err
+        }
         return nil
     }
     
-    private func checkEventKitAccess() -> Error? {
+    private func checkEventKitAccess(for type: EKEntityType) -> Error? {
         var error: Error? = nil
         
-        switch EKEventStore.authorizationStatus(for: .event) {
-        case .authorized: error = nil
+        switch EKEventStore.authorizationStatus(for: type) {
         case .notDetermined:
-            eventStore.requestAccess(to: .event) { (granted, err) in
+            let group = DispatchGroup()
+            group.enter()
+            eventStore.requestAccess(to: type) { granted, err in
                 guard err == nil else {
                     error = err
+                    group.leave()
                     return
                 }
                 error = granted ? nil : EventServiceError.eventKitDenied
+                group.leave()
             }
-        case .denied, .restricted: return EventServiceError.eventKitDenied
-        @unknown default: return EventServiceError.eventKitDenied
+            group.wait()
+        case .authorized: error = nil
+        case .denied, .restricted: error = EventServiceError.eventKitDenied
+        @unknown default: error = EventServiceError.eventKitDenied
         }
         
         return error
+    }
+    
+    private func checkCalendarEventAlreadyExists(data: CalendarEventData) -> Bool {
+        let predicate = eventStore.predicateForEvents(withStart: data.startDate, end: data.endDate, calendars: nil)
+        let existingEvents = eventStore.events(matching: predicate)
+        return existingEvents.contains { $0.title == data.title && $0.startDate == data.startDate && $0.endDate == data.endDate}
+    }
+    
+    private func generateCalendarEvent(data: CalendarEventData) -> EKEvent {
+        let event = EKEvent(eventStore: eventStore)
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        event.title = data.title
+        event.startDate = data.startDate
+        event.endDate = data.endDate
+        if let beforeInterval = data.alarmInterval { event.addAlarm(EKAlarm(absoluteDate: data.startDate.addingTimeInterval(beforeInterval))) }
+        return event
     }
 }
 
 enum EventServiceError: Error {
     case eventKitDenied
+    case eventCalendarAlreadyExists
 }
 
 extension EventServiceError: LocalizedError {
@@ -55,6 +80,7 @@ extension EventServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .eventKitDenied: return "EventServiceError - EventKit access denied!!!"
+        case .eventCalendarAlreadyExists: return "EventServiceError - Calendar event already exists!!!"
         }
     }
 }

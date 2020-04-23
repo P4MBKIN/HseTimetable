@@ -6,4 +6,17 @@
 //  Copyright © 2020 Hse. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+import Action
 import Foundation
+
+extension ActionError {
+    
+    func get() -> Error {
+        switch self {
+        case .underlyingError(let error): return error
+        case .notEnabled: return ActionError.notEnabled
+        }
+    }
+}

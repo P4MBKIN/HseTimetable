@@ -19,9 +19,12 @@ final class CalendarPresenter: CalendarPresenterProtocol, CalendarPresenterInput
     
     /// Inputs
     let viewDidLoadTrigger = PublishSubject<Void>()
+    let closeButtonTrigger = PublishSubject<Void>()
+    let addButtonTrigger = PublishSubject<CalendarEventData>()
     
     /// Outputs
-    let viewConfigure: Observable<CalendarEventData>
+    let viewConfigure = PublishSubject<CalendarEventData>()
+    let error = PublishSubject<Error>()
     
     private let lesson: Lesson
     private let disposeBag = DisposeBag()
@@ -31,17 +34,29 @@ final class CalendarPresenter: CalendarPresenterProtocol, CalendarPresenterInput
         
         self.lesson = lesson
         
-        let _viewConfigure = PublishRelay<CalendarEventData>()
-        
         /// Inputs setup
         self.viewDidLoadTrigger.asObserver()
-            .withLatestFrom(Observable.just(lesson))
+            .withLatestFrom(Observable.just(self.lesson))
             .map{ CalendarEventData(title: $0.discipline ?? "", startDate: $0.dateStart ?? Date(), endDate: $0.dateEnd ?? Date(), alarmInterval: nil) }
-            .bind(to: _viewConfigure)
+            .bind(to: self.viewConfigure)
+            .disposed(by: disposeBag)
+        
+        self.closeButtonTrigger.asObserver()
+            .bind(to: self.dependencies.router.inputs.dismissTrigger)
+            .disposed(by: disposeBag)
+        
+        self.addButtonTrigger.asObserver()
+            .bind(to: self.dependencies.interactor.inputs.addEventTrigger)
             .disposed(by: disposeBag)
         
         /// Outputs setup
-        self.viewConfigure = _viewConfigure.asObservable().take(1)
+        self.dependencies.interactor.outputs.addEventResponse.asObservable()
+            .bind(to: self.dependencies.router.inputs.dismissTrigger)
+            .disposed(by: disposeBag)
+        
+        self.dependencies.interactor.outputs.errorResponse.asObservable()
+            .bind(to: self.error)
+            .disposed(by: disposeBag)
     }
 }
 

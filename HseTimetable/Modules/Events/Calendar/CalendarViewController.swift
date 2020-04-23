@@ -50,7 +50,7 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
         self.alarmPickerView.dataSource = self
         self.alarmPickerView.delegate = self
         
-        self.presenter.outputs.viewConfigure
+        self.presenter.outputs.viewConfigure.asObserver()
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] eventData in
                 self?.titleTextField.text = eventData.title
@@ -61,19 +61,30 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
             })
         .disposed(by: disposeBag)
         
+        self.presenter.outputs.error.asObserver()
+            .subscribe(onNext: { [weak self] error in
+                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self?.present(alert, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
     }
     
+    // MARK:- Views events
     @objc private func closeButtonTouchUpInside() {
-        
+        self.presenter.inputs.closeButtonTrigger.onNext(())
     }
     
     @objc private func addButtonTouchUpInside() {
-        
+        let dataFromView = CalendarEventData(title: self.titleTextField.text ?? "", startDate: self.startDatePicker.date, endDate: self.endDatePicker.date, alarmInterval: self.alarmIntervalNames[self.alarmPickerView.selectedRow(inComponent: 0)].0)
+        self.presenter.inputs.addButtonTrigger.onNext(dataFromView)
     }
 }
 
+//MARK:- Picker View Data Sourse
 extension CalendarViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -85,6 +96,7 @@ extension CalendarViewController: UIPickerViewDataSource {
     }
 }
 
+//MARK:- Picker View Delegate
 extension CalendarViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

@@ -16,7 +16,11 @@ enum BaseHeaders {
         var headers: [String: String]? = nil
         switch self {
         case .lessons:
-            headers = nil
+            headers = [String: String]()
+            headers?["platform"] = "ios"
+            headers?["app"] = "hse-timetable-case"
+            headers?["version"] = "1.0.0"
+            headers?["id"] = "-1"
         }
         return headers
     }

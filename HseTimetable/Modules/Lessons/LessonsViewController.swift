@@ -46,12 +46,12 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
             .disposed(by: disposeBag)
         
         // Error received
-        self.presenter.outputs.error
+        self.presenter.outputs.error.asObserver()
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { error in
-                let alert = UIAlertController(title: "Error", message: String(describing: error), preferredStyle: .alert)
+            .subscribe(onNext: { [weak self] error in
+                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+                self?.present(alert, animated: true)
             })
             .disposed(by: disposeBag)
         

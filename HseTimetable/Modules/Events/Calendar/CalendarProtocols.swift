@@ -17,11 +17,14 @@ protocol CalendarViewProtocol: class {
 /// VIEW -> PRESENTER
 protocol CalendarPresenterInputsProtocol: class {
     var viewDidLoadTrigger: PublishSubject<Void> { get }
+    var closeButtonTrigger: PublishSubject<Void> { get }
+    var addButtonTrigger: PublishSubject<CalendarEventData> { get }
 }
 
 /// PRESENTER -> VIEW
 protocol CalendarPresenterOutputsProtocol: class {
-    var viewConfigure: Observable<CalendarEventData> { get }
+    var viewConfigure: PublishSubject<CalendarEventData> { get }
+    var error: PublishSubject<Error> { get }
 }
 
 typealias CalendarPresenterDependencies = (
@@ -37,12 +40,13 @@ protocol CalendarPresenterProtocol: class {
 
 /// PRESENTER -> INTERACTOR
 protocol CalendarInteractorInputsProtocol: class {
-    
+    var addEventTrigger: PublishSubject<CalendarEventData> { get }
 }
 
 /// INTERACTOR -> PRESENTER
 protocol CalendarInteractorOutputsProtocol: class {
-    
+    var addEventResponse: PublishSubject<Void> { get }
+    var errorResponse: PublishSubject<Error> { get }
 }
 
 protocol CalendarInteractorProtocol: class {
@@ -52,7 +56,7 @@ protocol CalendarInteractorProtocol: class {
 
 /// PRESENTER -> ROUTER
 protocol CalendarRouterInputsProtocol: class {
-    
+    var dismissTrigger: PublishSubject<Void> { get }
 }
 
 protocol CalendarRouterProtocol: class {

@@ -48,6 +48,7 @@ protocol LessonsInteractorInputsProtocol: class {
 /// INTERACTOR -> PRESENTER
 protocol LessonsInteractorOutputsProtocol: class {
     var searchLessonsResponse: PublishSubject<[Lesson]> { get }
+    var errorResponse: PublishSubject<Error> { get }
 }
 
 protocol LessonsInteractorProtocol: class {
