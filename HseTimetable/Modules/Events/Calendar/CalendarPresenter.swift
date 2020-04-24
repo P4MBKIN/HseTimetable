@@ -60,5 +60,5 @@ final class CalendarPresenter: CalendarPresenterProtocol, CalendarPresenterInput
     }
 }
 
-//MARK:- Presenterable
+// MARK:- Presenterable
 extension CalendarPresenter: Presenterable {}

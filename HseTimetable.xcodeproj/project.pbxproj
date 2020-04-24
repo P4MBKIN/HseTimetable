@@ -64,6 +64,7 @@
 		E946A1A824501D0400A3F07C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A724501D0400A3F07C /* Protocols.swift */; };
 		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
 		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
+		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		E946A1A724501D0400A3F07C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
+		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				E946A149244C5BCE00A3F07C /* Utils */,
 				E946A112244C132400A3F07C /* Assets.xcassets */,
 				E946A117244C132400A3F07C /* Info.plist */,
+				E9F96A832453022C005F2BB9 /* Intents.intentdefinition */,
 			);
 			path = HseTimetable;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				E946A189244EED9400A3F07C /* EventSegue.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
 				E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */,
+				E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */,
 				E946A19F245010F200A3F07C /* CalendarRouter.swift in Sources */,
 				E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */,
 				E946A139244C189100A3F07C /* BaseUrlHost.swift in Sources */,

@@ -18,5 +18,5 @@ final class LessonsConfigurator: LessonsConfiguratorProtocol {
     }
 }
 
-//MARK:- Configuratorable
+// MARK:- Configuratorable
 extension LessonsConfigurator: Configuratorable {}

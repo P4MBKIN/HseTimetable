@@ -84,7 +84,7 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
     }
 }
 
-//MARK:- Picker View Data Sourse
+// MARK:- Picker View Data Sourse
 extension CalendarViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -96,7 +96,7 @@ extension CalendarViewController: UIPickerViewDataSource {
     }
 }
 
-//MARK:- Picker View Delegate
+// MARK:- Picker View Delegate
 extension CalendarViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

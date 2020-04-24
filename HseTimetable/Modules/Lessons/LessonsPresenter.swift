@@ -64,5 +64,5 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     }
 }
 
-//MARK:- Presenterable
+// MARK:- Presenterable
 extension LessonsPresenter: Presenterable {}

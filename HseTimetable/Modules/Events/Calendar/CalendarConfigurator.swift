@@ -32,5 +32,5 @@ final class CalendarConfigurator: CalendarConfiguratorProtocol {
     }
 }
 
-//MARK:- Configuratorable
+// MARK:- Configuratorable
 extension CalendarConfigurator: Configuratorable {}

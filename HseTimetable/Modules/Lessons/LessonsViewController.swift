@@ -8,12 +8,27 @@
 
 import RxSwift
 import RxCocoa
+import IntentsUI
+import SnapKit
 import UIKit
 
 final class LessonsViewController: UIViewController, LessonsViewProtocol {
     
     @IBOutlet weak var lessonsTableView: UITableView!
     var refreshControl: UIRefreshControl?
+    
+    var siriButton: INUIAddVoiceShortcutButton = {
+        let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var intent: HseTimetableIntent {
+        let timetableIntent = HseTimetableIntent()
+        timetableIntent.hseParameter = "hse timetable intent"
+        timetableIntent.suggestedInvocationPhrase = "Расписание в университете"
+        return timetableIntent
+    }
     
     var presenter: LessonsPresenterProtocol!
     let configurator: LessonsConfiguratorProtocol = LessonsConfigurator()
@@ -28,6 +43,10 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     
     private func setup() {
         self.navigationController?.isNavigationBarHidden = true
+        
+        setSiriButton()
+        self.siriButton.shortcut = INShortcut(intent: self.intent )
+        self.siriButton.delegate = self
         
         self.lessonsTableView.register(LessonsTableViewCell.self, forCellReuseIdentifier: LessonsTableViewCell.reuseId)
         self.lessonsTableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.reuseId)
@@ -57,6 +76,16 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
+    }
+    
+    private func setSiriButton() {
+        if siriButton.superview == nil {
+            self.view.addSubview(self.siriButton)
+        }
+        self.siriButton.snp.remakeConstraints{ make in
+            make.left.equalToSuperview().inset(25)
+            make.bottom.equalToSuperview().inset(40)
+        }
     }
     
     
@@ -136,6 +165,50 @@ extension LessonsViewController: UITableViewDelegate {
         }
         let sections = IndexSet.init(integer: indexPath.section)
         self.lessonsTableView.reloadSections(sections, with: .none)
+    }
+}
+
+// MARK:- INUIAddVoiceShortcut Button Delegate
+extension LessonsViewController: INUIAddVoiceShortcutButtonDelegate {
+    
+    func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+        addVoiceShortcutViewController.delegate = self
+        addVoiceShortcutViewController.modalPresentationStyle = .formSheet
+        present(addVoiceShortcutViewController, animated: true, completion: nil)
+    }
+    
+    func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+        editVoiceShortcutViewController.delegate = self
+        editVoiceShortcutViewController.modalPresentationStyle = .formSheet
+        present(editVoiceShortcutViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK:- INUIAddVoiceShortcut ViewController Delegate
+extension LessonsViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK:- INUIEditVoiceShortcut ViewController Delegate
+extension LessonsViewController: INUIEditVoiceShortcutViewControllerDelegate {
+    
+    func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
