@@ -17,6 +17,10 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     @IBOutlet weak var lessonsTableView: UITableView!
     var refreshControl: UIRefreshControl?
     
+    var absentView: LessonsAbsentView = {
+        return LessonsAbsentView()
+    }()
+    
     var siriButton: INUIAddVoiceShortcutButton = {
         let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +48,8 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     private func setup() {
         self.navigationController?.isNavigationBarHidden = true
         
+        setAbsentView()
+        
         setSiriButton()
         self.siriButton.shortcut = INShortcut(intent: self.intent )
         self.siriButton.delegate = self
@@ -58,9 +64,10 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         // News received
         self.presenter.outputs.lessons.asObservable()
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] lessons in
                 self?.lessonsTableView.reloadData()
                 self?.refreshControl?.endRefreshing()
+                self?.absentView.isHidden = !lessons.isEmpty
             })
             .disposed(by: disposeBag)
         
@@ -78,8 +85,20 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
     }
     
+    private func setAbsentView() {
+        if self.absentView.superview == nil {
+            self.view.addSubview(self.absentView)
+        }
+        self.absentView.snp.remakeConstraints{ make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().inset(Size.large.indent)
+            make.right.equalToSuperview().inset(Size.large.indent)
+        }
+    }
+    
     private func setSiriButton() {
-        if siriButton.superview == nil {
+        if self.siriButton.superview == nil {
             self.view.addSubview(self.siriButton)
         }
         self.siriButton.snp.remakeConstraints{ make in

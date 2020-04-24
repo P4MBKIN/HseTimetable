@@ -65,6 +65,7 @@
 		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
 		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
 		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
+		E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
 		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAbsentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			children = (
 				E946A147244C51D500A3F07C /* LessonsTableViewCell.swift */,
 				E946A159244D3F8600A3F07C /* EventsTableViewCell.swift */,
+				E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */,
 			);
 			path = Lessons;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				E946A12F244C162800A3F07C /* NetStatus.swift in Sources */,
 				E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */,
 				E946A19D245010E500A3F07C /* CalendarInteractor.swift in Sources */,
+				E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */,
 				E946A17C244E721700A3F07C /* LessonModel.swift in Sources */,
 				E946A148244C51D500A3F07C /* LessonsTableViewCell.swift in Sources */,
 				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,

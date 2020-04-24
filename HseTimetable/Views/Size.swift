@@ -37,7 +37,7 @@ enum Size {
     var font: CGFloat {
         switch self {
         case .common: return 15.0
-        case .double: return Size.double.font * 2
+        case .double: return Size.common.font * 2
         case .small: return 12.0
         case .large: return 25.0
         }
