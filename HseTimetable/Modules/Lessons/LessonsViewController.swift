@@ -18,7 +18,9 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     var refreshControl: UIRefreshControl?
     
     var absentView: LessonsAbsentView = {
-        return LessonsAbsentView()
+        let view = LessonsAbsentView()
+        view.isHidden = true
+        return view
     }()
     
     var siriButton: INUIAddVoiceShortcutButton = {
@@ -65,9 +67,9 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         self.presenter.outputs.lessons.asObservable()
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] lessons in
-                self?.lessonsTableView.reloadData()
                 self?.refreshControl?.endRefreshing()
                 self?.absentView.isHidden = !lessons.isEmpty
+                self?.lessonsTableView.reloadData()
             })
             .disposed(by: disposeBag)
         
