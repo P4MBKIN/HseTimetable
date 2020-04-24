@@ -340,6 +340,7 @@ class LessonsTableViewCell: UITableViewCell {
         self.typeLessonLabel.snp.remakeConstraints{ make in
             make.top.equalToSuperview().inset(Size.common.indent)
             make.left.equalToSuperview().inset(Size.double.indent)
+            make.width.equalToSuperview().multipliedBy(0.65)
         }
     }
     
@@ -349,7 +350,7 @@ class LessonsTableViewCell: UITableViewCell {
         }
         self.auditoriumImageView.snp.remakeConstraints{ make in
             make.top.equalToSuperview().inset(Size.common.indent)
-            make.left.equalTo(self.typeLessonLabel.snp.right).offset(Size.common.indent)
+            make.left.greaterThanOrEqualTo(self.typeLessonLabel.snp.right).offset(Size.common.indent)
             make.width.equalTo(15)
             make.height.equalTo(15)
         }
