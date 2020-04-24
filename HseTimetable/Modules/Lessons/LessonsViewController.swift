@@ -136,31 +136,29 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
 extension LessonsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard self.presenter.outputs.opens.indices.contains(section) else { return 0 }
-        return self.presenter.outputs.opens[section] ? 2 : 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard self.presenter.outputs.lessons.value.indices.contains(indexPath.section) else { return UITableViewCell() }
         if indexPath.row == 0 {
+            /// show lesson cell
             let cell = self.lessonsTableView.dequeueReusableCell(withIdentifier: LessonsTableViewCell.reuseId) as? LessonsTableViewCell
             guard let lessonsCell = cell else { return UITableViewCell() }
             lessonsCell.setup(lesson: self.presenter.outputs.lessons.value[indexPath.section])
             return lessonsCell
-        } else {
+        } else if indexPath.row == 1 && self.presenter.outputs.opens[indexPath.section] {
+            /// show event cell if open
             let cell = self.lessonsTableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.reuseId) as? EventsTableViewCell
             guard let eventsCell = cell else { return UITableViewCell() }
             eventsCell.setup(lesson: self.presenter.outputs.lessons.value[indexPath.section])
             eventsCell.calendarButton.tag = indexPath.section
-            eventsCell.noteButton.tag = indexPath.section
             eventsCell.reminderButton.tag = indexPath.section
-            eventsCell.alarmButton.tag = indexPath.section
             eventsCell.calendarButton.addTarget(self, action: #selector(calendarButtonTouchUpInside(sender:)), for: .touchUpInside)
-            eventsCell.noteButton.addTarget(self, action: #selector(noteButtonTouchUpInside(sender:)), for: .touchUpInside)
             eventsCell.reminderButton.addTarget(self, action: #selector(reminderButtonTouchUpInside(sender:)), for: .touchUpInside)
-            eventsCell.alarmButton.addTarget(self, action: #selector(alarmButtonTouchUpInside(sender:)), for: .touchUpInside)
             return eventsCell
         }
+        return UITableViewCell()
     }
 }
 
@@ -174,18 +172,30 @@ extension LessonsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard self.presenter.outputs.lessons.value.indices.contains(indexPath.section) else { return 0 }
         if indexPath.row == 0 { return LessonsTableViewCell.cellHeight }
-        else { return EventsTableViewCell.cellHeight }
+        else if indexPath.row == 1 && self.presenter.outputs.opens[indexPath.section] { return EventsTableViewCell.cellHeight }
+        else { return 0 }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard self.presenter.outputs.opens.indices.contains(indexPath.section) else { return }
+        
+        /// close opened sections
+        var indexes = self.presenter.outputs.opens.indexes(of: true).filter{ $0 != indexPath.section }
+        indexes.forEach { index in
+            self.presenter.outputs.opens[index] = false
+        }
+        
+        /// open / close selected section
         if self.presenter.outputs.opens[indexPath.section] == true {
             self.presenter.outputs.opens[indexPath.section] = false
         } else {
             self.presenter.outputs.opens[indexPath.section] = true
         }
-        let sections = IndexSet.init(integer: indexPath.section)
-        self.lessonsTableView.reloadSections(sections, with: .none)
+        indexes.append(indexPath.section)
+        
+        /// reload table rows
+        let paths = indexes.map{ IndexPath(row: 1, section: $0) }
+        self.lessonsTableView.reloadRows(at: paths, with: .none)
     }
 }
 

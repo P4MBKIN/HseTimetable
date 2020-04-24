@@ -66,6 +66,7 @@
 		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
 		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
 		E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */; };
+		E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
 		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAbsentView.swift; sourceTree = "<group>"; };
+		E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 				E946A188244EED9400A3F07C /* EventSegue.swift */,
 				E946A1AB24509D3200A3F07C /* CalendarEventData.swift */,
+				E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				E946A197245010AB00A3F07C /* Calendar */,
+				E9F96A87245353F7005F2BB9 /* Reminder */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -378,6 +382,13 @@
 				E946A1A9245054D400A3F07C /* CalendarViewController.xib */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		E9F96A87245353F7005F2BB9 /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,6 +509,7 @@
 				E946A145244C19D100A3F07C /* BaseRequest.swift in Sources */,
 				E946A156244D176600A3F07C /* Color.swift in Sources */,
 				E946A131244C171E00A3F07C /* BaseHeaders.swift in Sources */,
+				E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */,
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
 				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
 				E946A18E244F0A8800A3F07C /* EventService.swift in Sources */,

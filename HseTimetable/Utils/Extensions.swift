@@ -20,3 +20,10 @@ extension ActionError {
         }
     }
 }
+
+extension Array where Element: Equatable {
+    
+    func indexes(of element: Element) -> [Int] {
+        return self.enumerated().filter({ $0.element == element }).map({ $0.offset })
+    }
+}

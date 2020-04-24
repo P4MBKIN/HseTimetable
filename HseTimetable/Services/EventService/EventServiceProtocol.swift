@@ -12,5 +12,9 @@ protocol CalendarEventProtocol {
     func createCalendarEvent(data: CalendarEventData) -> Error?
 }
 
-protocol EventServiceProtocol: CalendarEventProtocol {
+protocol ReminderEventProtocol {
+    func createReminderEvent(data: ReminderEventData) -> Error?
+}
+
+protocol EventServiceProtocol: CalendarEventProtocol, ReminderEventProtocol {
 }
