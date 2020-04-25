@@ -15,7 +15,5 @@ enum SegueType {
 
 enum EventSegueType {
     case lessonsToCalendar(SegueType)
-    case lessonsToNote(SegueType)
     case lessonsToReminder(SegueType)
-    case lessonsToAlarm(SegueType)
 }

@@ -119,16 +119,8 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         self.presenter.inputs.didSelectLessonTrigger.onNext((sender.tag, EventSegueType.lessonsToCalendar(.present)))
     }
     
-    @objc private func noteButtonTouchUpInside(sender: UIButton) {
-        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToNote))
-    }
-    
     @objc private func reminderButtonTouchUpInside(sender: UIButton) {
-        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToReminder))
-    }
-    
-    @objc private func alarmButtonTouchUpInside(sender: UIButton) {
-        //self.presenter.inputs.didSelectLessonTrigger.accept((sender.tag, .lessonsToAlarm))
+        self.presenter.inputs.didSelectLessonTrigger.onNext((sender.tag, EventSegueType.lessonsToReminder(.present)))
     }
 }
 

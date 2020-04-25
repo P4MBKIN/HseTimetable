@@ -9,5 +9,8 @@
 import Foundation
 
 struct ReminderEventData {
-    
+    let title: String
+    let priority: Int
+    let notes: String?
+    let alarmDate: Date?
 }

@@ -33,9 +33,10 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
                     let calendarConfigurator: CalendarConfiguratorProtocol = CalendarConfigurator()
                     if type == .present { calendarConfigurator.configureWithPresent(from: self.view, lesson: lesson) }
                     else if type == .push { calendarConfigurator.configureWithPush(from: self.view, lesson: lesson) }
-                case .lessonsToNote(_): return
-                case .lessonsToReminder(_): return
-                case .lessonsToAlarm(_): return
+                case .lessonsToReminder(let type):
+                    let reminderConfigurator: ReminderConfiguratorProtocol = ReminderConfigurator()
+                    if type == .present { reminderConfigurator.configureWithPresent(from: self.view, lesson: lesson) }
+                    else if type == .push { reminderConfigurator.configureWithPush(from: self.view, lesson: lesson) }
                 }
             })
         .disposed(by: disposalBag)

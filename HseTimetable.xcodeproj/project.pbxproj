@@ -67,6 +67,13 @@
 		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
 		E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */; };
 		E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */; };
+		E9F96A8B245385AA005F2BB9 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9F96A8A245385AA005F2BB9 /* ReminderViewController.xib */; };
+		E9F96A8D2453B1F4005F2BB9 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8C2453B1F4005F2BB9 /* ReminderViewController.swift */; };
+		E9F96A8F2453B211005F2BB9 /* ReminderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8E2453B211005F2BB9 /* ReminderPresenter.swift */; };
+		E9F96A912453B21E005F2BB9 /* ReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A902453B21E005F2BB9 /* ReminderInteractor.swift */; };
+		E9F96A932453B22C005F2BB9 /* ReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A922453B22C005F2BB9 /* ReminderRouter.swift */; };
+		E9F96A952453B242005F2BB9 /* ReminderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A942453B242005F2BB9 /* ReminderConfigurator.swift */; };
+		E9F96A972453B250005F2BB9 /* ReminderProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A962453B250005F2BB9 /* ReminderProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +133,13 @@
 		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAbsentView.swift; sourceTree = "<group>"; };
 		E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventData.swift; sourceTree = "<group>"; };
+		E9F96A8A245385AA005F2BB9 /* ReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderViewController.xib; sourceTree = "<group>"; };
+		E9F96A8C2453B1F4005F2BB9 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		E9F96A8E2453B211005F2BB9 /* ReminderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPresenter.swift; sourceTree = "<group>"; };
+		E9F96A902453B21E005F2BB9 /* ReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderInteractor.swift; sourceTree = "<group>"; };
+		E9F96A922453B22C005F2BB9 /* ReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRouter.swift; sourceTree = "<group>"; };
+		E9F96A942453B242005F2BB9 /* ReminderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderConfigurator.swift; sourceTree = "<group>"; };
+		E9F96A962453B250005F2BB9 /* ReminderProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +401,13 @@
 		E9F96A87245353F7005F2BB9 /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
+				E9F96A8C2453B1F4005F2BB9 /* ReminderViewController.swift */,
+				E9F96A8E2453B211005F2BB9 /* ReminderPresenter.swift */,
+				E9F96A902453B21E005F2BB9 /* ReminderInteractor.swift */,
+				E9F96A922453B22C005F2BB9 /* ReminderRouter.swift */,
+				E9F96A942453B242005F2BB9 /* ReminderConfigurator.swift */,
+				E9F96A962453B250005F2BB9 /* ReminderProtocols.swift */,
+				E9F96A8A245385AA005F2BB9 /* ReminderViewController.xib */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -466,6 +487,7 @@
 				E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */,
 				E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */,
 				E946A113244C132400A3F07C /* Assets.xcassets in Resources */,
+				E9F96A8B245385AA005F2BB9 /* ReminderViewController.xib in Resources */,
 				E946A111244C131C00A3F07C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,10 +499,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F96A932453B22C005F2BB9 /* ReminderRouter.swift in Sources */,
 				E946A199245010C700A3F07C /* CalendarViewController.swift in Sources */,
 				E946A1A824501D0400A3F07C /* Protocols.swift in Sources */,
 				E946A15A244D3F8600A3F07C /* EventsTableViewCell.swift in Sources */,
 				E946A189244EED9400A3F07C /* EventSegue.swift in Sources */,
+				E9F96A972453B250005F2BB9 /* ReminderProtocols.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
 				E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */,
 				E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */,
@@ -488,6 +512,7 @@
 				E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */,
 				E946A139244C189100A3F07C /* BaseUrlHost.swift in Sources */,
 				E946A12F244C162800A3F07C /* NetStatus.swift in Sources */,
+				E9F96A8D2453B1F4005F2BB9 /* ReminderViewController.swift in Sources */,
 				E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */,
 				E946A19D245010E500A3F07C /* CalendarInteractor.swift in Sources */,
 				E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */,
@@ -502,6 +527,7 @@
 				E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */,
 				E946A124244C158300A3F07C /* NetworkServiceProtocol.swift in Sources */,
 				E946A19B245010DA00A3F07C /* CalendarPresenter.swift in Sources */,
+				E9F96A912453B21E005F2BB9 /* ReminderInteractor.swift in Sources */,
 				E946A13D244C18EA00A3F07C /* BaseUrlPath.swift in Sources */,
 				E946A135244C183D00A3F07C /* BaseMethod.swift in Sources */,
 				E946A16B244D842B00A3F07C /* Lesson.swift in Sources */,
@@ -509,9 +535,11 @@
 				E946A145244C19D100A3F07C /* BaseRequest.swift in Sources */,
 				E946A156244D176600A3F07C /* Color.swift in Sources */,
 				E946A131244C171E00A3F07C /* BaseHeaders.swift in Sources */,
+				E9F96A952453B242005F2BB9 /* ReminderConfigurator.swift in Sources */,
 				E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */,
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
 				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
+				E9F96A8F2453B211005F2BB9 /* ReminderPresenter.swift in Sources */,
 				E946A18E244F0A8800A3F07C /* EventService.swift in Sources */,
 				E946A18C244F0A7F00A3F07C /* EventServiceProtocol.swift in Sources */,
 				E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */,
