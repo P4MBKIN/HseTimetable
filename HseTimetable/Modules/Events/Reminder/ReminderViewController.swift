@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import SnapKit
 import UIKit
 
 final class ReminderViewController: UIViewController, ReminderViewProtocol {
