@@ -30,7 +30,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     private let disposeBag = DisposeBag()
     
     static private let dataService: DataServiceProtocol = DataService()
-    static private let networkService: NetworkServiceProtocol = NetworkService()
+    static private let networkService: NetworkLessonsServiceProtocol = NetworkService()
     
     required init() {
         self.dbGetAction = Action { return LessonsInteractor.getLessonsFromDB() }
@@ -114,9 +114,9 @@ extension LessonsInteractor {
     
     private static func getLessonsFromNetwork(params: LessonsSearchParams) -> Single<[Lesson]> {
         return Single<[Lesson]>.create{ observer in
-            LessonsInteractor.networkService.lessonsGet(studentId: params.studentId, daysOffset: params.daysOffset, dateFrom: params.dateFrom) { (lessons: [Lesson]?, lessonsError: LessonsError?, error) in
-                guard lessonsError == nil else {
-                    observer(.error(lessonsError!))
+            LessonsInteractor.networkService.lessonsGet(studentId: params.studentId, daysOffset: params.daysOffset, dateFrom: params.dateFrom) { (lessons: [Lesson]?, responseError: ResponseError?, error) in
+                guard responseError == nil else {
+                    observer(.error(responseError!))
                     return
                 }
                 guard error == nil else {

@@ -11,11 +11,16 @@ import Foundation
 enum BaseParams {
     
     case lessons
+    case auth
     
     func returnType() -> [String: String]? {
         var params: [String: String]? = nil
+        
         switch self {
         case .lessons:
+            params = nil
+            
+        case .auth:
             params = nil
         }
         return params

@@ -1,5 +1,5 @@
 //
-//  LessonsError.swift
+//  ResponseError.swift
 //  HseTimetable
 //
 //  Created by Pavel on 21.04.2020.
@@ -25,7 +25,7 @@ struct ErrorDetail: Decodable {
     }
 }
 
-struct LessonsError: Decodable, Error {
+struct ResponseError: Decodable, Error {
     
     let error: ErrorDetail?
     
@@ -39,18 +39,18 @@ struct LessonsError: Decodable, Error {
     }
 }
 
-extension LessonsError: CustomStringConvertible {
+extension ResponseError: CustomStringConvertible {
     
     var description: String {
         return  """
-                LessonsError!!!
+                ResponseError!!!
                 name: \(self.error?.name ?? "")
                 message: \(self.error?.message ?? "")
                 """
     }
 }
 
-extension LessonsError: LocalizedError {
+extension ResponseError: LocalizedError {
     
     var errorDescription: String? { return self.description }
 }

@@ -43,7 +43,7 @@
 		E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */; };
 		E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A170244E638600A3F07C /* LessonsSearchParams.swift */; };
 		E946A173244E66B000A3F07C /* LessonsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A172244E66B000A3F07C /* LessonsInteractor.swift */; };
-		E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A174244E6AEF00A3F07C /* LessonsError.swift */; };
+		E946A175244E6AEF00A3F07C /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A174244E6AEF00A3F07C /* ResponseError.swift */; };
 		E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A176244E70B800A3F07C /* DataServiceProtocol.swift */; };
 		E946A179244E70C700A3F07C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A178244E70C700A3F07C /* DataService.swift */; };
 		E946A17C244E721700A3F07C /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A17B244E721700A3F07C /* LessonModel.swift */; };
@@ -109,7 +109,7 @@
 		E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsPresenter.swift; sourceTree = "<group>"; };
 		E946A170244E638600A3F07C /* LessonsSearchParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsSearchParams.swift; sourceTree = "<group>"; };
 		E946A172244E66B000A3F07C /* LessonsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsInteractor.swift; sourceTree = "<group>"; };
-		E946A174244E6AEF00A3F07C /* LessonsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsError.swift; sourceTree = "<group>"; };
+		E946A174244E6AEF00A3F07C /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		E946A176244E70B800A3F07C /* DataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
 		E946A178244E70C700A3F07C /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		E946A17B244E721700A3F07C /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				E946A16A244D842B00A3F07C /* Lesson.swift */,
-				E946A174244E6AEF00A3F07C /* LessonsError.swift */,
+				E946A174244E6AEF00A3F07C /* ResponseError.swift */,
 				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 				E946A188244EED9400A3F07C /* EventSegue.swift */,
 				E946A1AB24509D3200A3F07C /* CalendarEventData.swift */,
@@ -506,7 +506,7 @@
 				E946A189244EED9400A3F07C /* EventSegue.swift in Sources */,
 				E9F96A972453B250005F2BB9 /* ReminderProtocols.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
-				E946A175244E6AEF00A3F07C /* LessonsError.swift in Sources */,
+				E946A175244E6AEF00A3F07C /* ResponseError.swift in Sources */,
 				E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */,
 				E946A19F245010F200A3F07C /* CalendarRouter.swift in Sources */,
 				E946A185244E7FFA00A3F07C /* LessonsConfigurator.swift in Sources */,

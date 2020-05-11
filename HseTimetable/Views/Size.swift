@@ -1,5 +1,5 @@
 //
-//  Padding.swift
+//  Size.swift
 //  HseTimetable
 //
 //  Created by Pavel on 20.04.2020.

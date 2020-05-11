@@ -8,7 +8,9 @@
 
 import Foundation
 
-class NetworkService: NetworkServiceProtocol {
+class NetworkService {}
+
+extension NetworkService: NetworkLessonsServiceProtocol {
     
     func lessonsGet<Model: Decodable, ErrorModel: Decodable>(studentId: Int,
                                                              daysOffset: Int,
@@ -27,6 +29,26 @@ class NetworkService: NetworkServiceProtocol {
 //        params["start"] = "2019-12-16"
         
         BaseDataResult.lessons.requestDataResult(params: params, addHeaders: nil) { (data, error) in
+            guard let data = data else { return completion(nil, nil, BaseResultError.nilDataError) }
+            guard error == nil else {
+                let (errorModel, _): (ErrorModel?, Error?) = parseJson(data: data)
+                return completion(nil, errorModel, error)
+            }
+            let (model, parseError): (Model?, Error?) = parseJson(data: data)
+            if model != nil { return completion(model, nil, nil) }
+            else { return completion(nil, nil, parseError) }
+        }
+    }
+}
+
+extension NetworkService: NetworkAuthServiceProtocol {
+    
+    func studentGet<Model: Decodable, ErrorModel: Decodable>(email: String,
+                                                             completion: @escaping ((Model?, ErrorModel?, Error?) -> Void)) {
+        var params = [String: String]()
+        params["email"] = email
+        
+        BaseDataResult.auth.requestDataResult(params: params, addHeaders: nil) { (data, error) in
             guard let data = data else { return completion(nil, nil, BaseResultError.nilDataError) }
             guard error == nil else {
                 let (errorModel, _): (ErrorModel?, Error?) = parseJson(data: data)

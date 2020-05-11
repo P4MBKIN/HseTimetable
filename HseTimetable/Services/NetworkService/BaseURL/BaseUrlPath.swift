@@ -8,6 +8,20 @@
 
 import Foundation
 
-enum BaseUrlPath: String {
-    case lessons = "/ruz/lessons"
+enum BaseUrlPathType {
+    case lessons
+    case auth
+}
+
+enum BaseUrlPath {
+    
+    case lessons
+    case auth(email: String)
+
+    var rawValue: String {
+        switch self {
+        case .lessons: return "/ruz/lessons"
+        case .auth(let email):   return "/dump/email/\(email)"
+        }
+    }
 }

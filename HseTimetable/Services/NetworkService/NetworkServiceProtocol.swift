@@ -8,9 +8,14 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol: class {
+protocol NetworkLessonsServiceProtocol: class {
     func lessonsGet<Model: Decodable, ErrorModel: Decodable>(studentId: Int,
                                                              daysOffset: Int,
                                                              dateFrom: Date,
+                                                             completion: @escaping ((Model?, ErrorModel?, Error?) -> Void))
+}
+
+protocol NetworkAuthServiceProtocol: class {
+    func studentGet<Model: Decodable, ErrorModel: Decodable>(email: String,
                                                              completion: @escaping ((Model?, ErrorModel?, Error?) -> Void))
 }

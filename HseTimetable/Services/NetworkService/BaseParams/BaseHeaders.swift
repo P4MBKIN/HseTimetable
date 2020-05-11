@@ -11,11 +11,20 @@ import Foundation
 enum BaseHeaders {
     
     case lessons
+    case auth
     
     func returnType() -> [String: String]? {
         var headers: [String: String]? = nil
+        
         switch self {
         case .lessons:
+            headers = [String: String]()
+            headers?["platform"] = "ios"
+            headers?["app"] = "hse-timetable-case"
+            headers?["version"] = "1.0.0"
+            headers?["id"] = "-1"
+            
+        case .auth:
             headers = [String: String]()
             headers?["platform"] = "ios"
             headers?["app"] = "hse-timetable-case"

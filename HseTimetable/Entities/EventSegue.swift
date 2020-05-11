@@ -1,5 +1,5 @@
 //
-//  LessonsSeque.swift
+//  EventSegue.swift
 //  HseTimetable
 //
 //  Created by Pavel on 21.04.2020.

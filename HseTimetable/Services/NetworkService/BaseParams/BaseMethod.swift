@@ -9,5 +9,5 @@
 import Foundation
 
 enum BaseMethod: String {
-    case lessons = "GET"
+    case get = "GET"
 }
