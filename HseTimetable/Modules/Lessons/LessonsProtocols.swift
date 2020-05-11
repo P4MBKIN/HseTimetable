@@ -65,6 +65,7 @@ protocol LessonsRouterProtocol: class {
     var inputs: LessonsRouterInputsProtocol { get }
 }
 
+/// ANOTHER MODUL -> CONFIGURATOR
 protocol LessonsConfiguratorProtocol: class {
-    func configure(with viewController: LessonsViewController)
+    func configure() -> LessonsViewController
 }

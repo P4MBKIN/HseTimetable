@@ -15,6 +15,7 @@ import UIKit
 final class LessonsViewController: UIViewController, LessonsViewProtocol {
     
     @IBOutlet weak var lessonsTableView: UITableView!
+    
     var refreshControl: UIRefreshControl?
     
     var absentView: LessonsAbsentView = {
@@ -37,13 +38,11 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     }
     
     var presenter: LessonsPresenterProtocol!
-    let configurator: LessonsConfiguratorProtocol = LessonsConfigurator()
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurator.configure(with: self)
         setup()
     }
     

@@ -10,11 +10,13 @@ import Foundation
 
 final class LessonsConfigurator: LessonsConfiguratorProtocol {
     
-    func configure(with viewController: LessonsViewController) {
+    func configure() -> LessonsViewController {
+        let viewController = LessonsViewController()
         let interactor: LessonsInteractorProtocol = LessonsInteractor()
         let router: LessonsRouterProtocol = LessonsRouter(view: viewController)
         let presenter: LessonsPresenterProtocol = LessonsPresenter(dependencies: (interactor: interactor, router: router))
         viewController.presenter = presenter
+        return viewController
     }
 }
 

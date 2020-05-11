@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E946A10A244C131C00A3F07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A109244C131C00A3F07C /* AppDelegate.swift */; };
 		E946A10C244C131C00A3F07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A10B244C131C00A3F07C /* SceneDelegate.swift */; };
-		E946A111244C131C00A3F07C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946A10F244C131C00A3F07C /* Main.storyboard */; };
 		E946A113244C132400A3F07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E946A112244C132400A3F07C /* Assets.xcassets */; };
 		E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946A114244C132400A3F07C /* LaunchScreen.storyboard */; };
 		E946A124244C158300A3F07C /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A123244C158300A3F07C /* NetworkServiceProtocol.swift */; };
@@ -64,6 +63,7 @@
 		E946A1A824501D0400A3F07C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1A724501D0400A3F07C /* Protocols.swift */; };
 		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
 		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
+		E9C9CE792468D2A900195246 /* LessonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C9CE782468D2A900195246 /* LessonsViewController.xib */; };
 		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
 		E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */; };
 		E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */; };
@@ -80,7 +80,6 @@
 		E946A106244C131C00A3F07C /* HseTimetable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HseTimetable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E946A109244C131C00A3F07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E946A10B244C131C00A3F07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E946A110244C131C00A3F07C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E946A112244C132400A3F07C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E946A115244C132400A3F07C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E946A117244C132400A3F07C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		E946A1A724501D0400A3F07C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
+		E9C9CE782468D2A900195246 /* LessonsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonsViewController.xib; sourceTree = "<group>"; };
 		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAbsentView.swift; sourceTree = "<group>"; };
 		E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventData.swift; sourceTree = "<group>"; };
@@ -197,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				E946A114244C132400A3F07C /* LaunchScreen.storyboard */,
-				E946A10F244C131C00A3F07C /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -317,6 +316,7 @@
 				E946A182244E7FC600A3F07C /* LessonsRouter.swift */,
 				E946A184244E7FFA00A3F07C /* LessonsConfigurator.swift */,
 				E946A15B244D7DB400A3F07C /* LessonsProtocols.swift */,
+				E9C9CE782468D2A900195246 /* LessonsViewController.xib */,
 			);
 			path = Lessons;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */,
 				E946A113244C132400A3F07C /* Assets.xcassets in Resources */,
 				E9F96A8B245385AA005F2BB9 /* ReminderViewController.xib in Resources */,
-				E946A111244C131C00A3F07C /* Main.storyboard in Resources */,
+				E9C9CE792468D2A900195246 /* LessonsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,14 +561,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E946A10F244C131C00A3F07C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E946A110244C131C00A3F07C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E946A114244C132400A3F07C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
