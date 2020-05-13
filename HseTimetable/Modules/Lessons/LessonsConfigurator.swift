@@ -6,9 +6,21 @@
 //  Copyright © 2020 Hse. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 final class LessonsConfigurator: LessonsConfiguratorProtocol {
+    
+    func configureWithPush(from: Viewable) {
+        let view = configure()
+        from.push(view, animated: true)
+    }
+    
+    func configureWithPresent(from: Viewable) {
+        let view = configure()
+        let nav = UINavigationController(rootViewController: view)
+        from.present(nav, animated: true)
+    }
     
     func configure() -> LessonsViewController {
         let viewController = LessonsViewController()

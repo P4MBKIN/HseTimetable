@@ -39,24 +39,24 @@ final class ReminderPresenter: ReminderPresenterProtocol, ReminderPresenterInput
             .withLatestFrom(Observable.just(self.lesson))
             .map{ ReminderEventData(title: $0.discipline ?? "", priority: 0, notes: "Не забыть: ", alarmDate: $0.dateStart) }
             .bind(to: self.viewConfigure)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.closeButtonTrigger.asObserver()
             .bind(to: self.dependencies.router.inputs.dismissTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.addButtonTrigger.asObserver()
             .bind(to: self.dependencies.interactor.inputs.addEventTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Outputs setup
         self.dependencies.interactor.outputs.addEventResponse.asObservable()
             .bind(to: self.dependencies.router.inputs.dismissTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.dependencies.interactor.outputs.errorResponse.asObservable()
             .bind(to: self.error)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
     }
 }
 

@@ -64,6 +64,14 @@
 		E946A1AA245054D400A3F07C /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E946A1A9245054D400A3F07C /* CalendarViewController.xib */; };
 		E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A1AB24509D3200A3F07C /* CalendarEventData.swift */; };
 		E9C9CE792468D2A900195246 /* LessonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C9CE782468D2A900195246 /* LessonsViewController.xib */; };
+		E9C9CE7C246A3B7700195246 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE7B246A3B7700195246 /* AuthViewController.swift */; };
+		E9C9CE7E246A3B8800195246 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE7D246A3B8800195246 /* AuthPresenter.swift */; };
+		E9C9CE80246A3B9500195246 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE7F246A3B9500195246 /* AuthInteractor.swift */; };
+		E9C9CE82246A3BAA00195246 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE81246A3BAA00195246 /* AuthRouter.swift */; };
+		E9C9CE84246A3BB700195246 /* AuthConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE83246A3BB700195246 /* AuthConfigurator.swift */; };
+		E9C9CE86246A3BC300195246 /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE85246A3BC300195246 /* AuthProtocols.swift */; };
+		E9C9CE88246A3BDA00195246 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C9CE87246A3BDA00195246 /* AuthViewController.xib */; };
+		E9C9CE90246BCCA200195246 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C9CE8F246BCCA200195246 /* Auth.swift */; };
 		E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A832453022C005F2BB9 /* Intents.intentdefinition */; };
 		E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */; };
 		E9F96A8924535C59005F2BB9 /* ReminderEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */; };
@@ -130,6 +138,14 @@
 		E946A1A9245054D400A3F07C /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		E946A1AB24509D3200A3F07C /* CalendarEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
 		E9C9CE782468D2A900195246 /* LessonsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonsViewController.xib; sourceTree = "<group>"; };
+		E9C9CE7B246A3B7700195246 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		E9C9CE7D246A3B8800195246 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		E9C9CE7F246A3B9500195246 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		E9C9CE81246A3BAA00195246 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		E9C9CE83246A3BB700195246 /* AuthConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConfigurator.swift; sourceTree = "<group>"; };
+		E9C9CE85246A3BC300195246 /* AuthProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocols.swift; sourceTree = "<group>"; };
+		E9C9CE87246A3BDA00195246 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
+		E9C9CE8F246BCCA200195246 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		E9F96A832453022C005F2BB9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		E9F96A852453260E005F2BB9 /* LessonsAbsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAbsentView.swift; sourceTree = "<group>"; };
 		E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventData.swift; sourceTree = "<group>"; };
@@ -215,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				E946A1942450075100A3F07C /* Events */,
+				E9C9CE7A246A3B5200195246 /* Auth */,
 				E946A146244C51AA00A3F07C /* Lessons */,
 				E946A1A724501D0400A3F07C /* Protocols.swift */,
 			);
@@ -225,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				E946A16A244D842B00A3F07C /* Lesson.swift */,
+				E9C9CE8F246BCCA200195246 /* Auth.swift */,
 				E946A174244E6AEF00A3F07C /* ResponseError.swift */,
 				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 				E946A188244EED9400A3F07C /* EventSegue.swift */,
@@ -398,6 +416,20 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		E9C9CE7A246A3B5200195246 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E9C9CE7B246A3B7700195246 /* AuthViewController.swift */,
+				E9C9CE7D246A3B8800195246 /* AuthPresenter.swift */,
+				E9C9CE7F246A3B9500195246 /* AuthInteractor.swift */,
+				E9C9CE81246A3BAA00195246 /* AuthRouter.swift */,
+				E9C9CE83246A3BB700195246 /* AuthConfigurator.swift */,
+				E9C9CE85246A3BC300195246 /* AuthProtocols.swift */,
+				E9C9CE87246A3BDA00195246 /* AuthViewController.xib */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		E9F96A87245353F7005F2BB9 /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +520,7 @@
 				E946A116244C132400A3F07C /* LaunchScreen.storyboard in Resources */,
 				E946A113244C132400A3F07C /* Assets.xcassets in Resources */,
 				E9F96A8B245385AA005F2BB9 /* ReminderViewController.xib in Resources */,
+				E9C9CE88246A3BDA00195246 /* AuthViewController.xib in Resources */,
 				E9C9CE792468D2A900195246 /* LessonsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +539,7 @@
 				E946A189244EED9400A3F07C /* EventSegue.swift in Sources */,
 				E9F96A972453B250005F2BB9 /* ReminderProtocols.swift in Sources */,
 				E946A141244C195300A3F07C /* BaseDownload.swift in Sources */,
+				E9C9CE86246A3BC300195246 /* AuthProtocols.swift in Sources */,
 				E946A175244E6AEF00A3F07C /* ResponseError.swift in Sources */,
 				E9F96A842453022C005F2BB9 /* Intents.intentdefinition in Sources */,
 				E946A19F245010F200A3F07C /* CalendarRouter.swift in Sources */,
@@ -515,11 +549,14 @@
 				E9F96A8D2453B1F4005F2BB9 /* ReminderViewController.swift in Sources */,
 				E946A1A32450111100A3F07C /* CalendarProtocols.swift in Sources */,
 				E946A19D245010E500A3F07C /* CalendarInteractor.swift in Sources */,
+				E9C9CE7C246A3B7700195246 /* AuthViewController.swift in Sources */,
 				E9F96A862453260E005F2BB9 /* LessonsAbsentView.swift in Sources */,
 				E946A17C244E721700A3F07C /* LessonModel.swift in Sources */,
 				E946A148244C51D500A3F07C /* LessonsTableViewCell.swift in Sources */,
+				E9C9CE84246A3BB700195246 /* AuthConfigurator.swift in Sources */,
 				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,
 				E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */,
+				E9C9CE82246A3BAA00195246 /* AuthRouter.swift in Sources */,
 				E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */,
 				E946A1A12450110400A3F07C /* CalendarConfigurator.swift in Sources */,
 				E946A137244C187200A3F07C /* BaseUrl.swift in Sources */,
@@ -540,12 +577,15 @@
 				E946A13B244C18CC00A3F07C /* BaseUrlScheme.swift in Sources */,
 				E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */,
 				E9F96A8F2453B211005F2BB9 /* ReminderPresenter.swift in Sources */,
+				E9C9CE7E246A3B8800195246 /* AuthPresenter.swift in Sources */,
 				E946A18E244F0A8800A3F07C /* EventService.swift in Sources */,
 				E946A18C244F0A7F00A3F07C /* EventServiceProtocol.swift in Sources */,
 				E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */,
 				E946A17F244E750700A3F07C /* BaseOptionsProtocols.swift in Sources */,
 				E946A133244C179F00A3F07C /* BaseParams.swift in Sources */,
 				E946A179244E70C700A3F07C /* DataService.swift in Sources */,
+				E9C9CE80246A3B9500195246 /* AuthInteractor.swift in Sources */,
+				E9C9CE90246BCCA200195246 /* Auth.swift in Sources */,
 				E946A10A244C131C00A3F07C /* AppDelegate.swift in Sources */,
 				E946A150244C647B00A3F07C /* Extensions.swift in Sources */,
 				E946A173244E66B000A3F07C /* LessonsInteractor.swift in Sources */,

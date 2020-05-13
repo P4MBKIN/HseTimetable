@@ -19,12 +19,12 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
     /// Inputs
     let presentLessonEvent = PublishSubject<(Lesson, EventSegueType)>()
     
-    private let disposalBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     required init(view: Viewable) {
         self.view = view
         
-        /// Setup inputs
+        /// Inputs setup
         self.presentLessonEvent.asObserver()
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [unowned self] lesson, segue in
@@ -39,6 +39,6 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
                     else if type == .push { reminderConfigurator.configureWithPush(from: self.view, lesson: lesson) }
                 }
             })
-        .disposed(by: disposalBag)
+        .disposed(by: self.disposeBag)
     }
 }

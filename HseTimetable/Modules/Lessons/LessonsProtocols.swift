@@ -67,5 +67,7 @@ protocol LessonsRouterProtocol: class {
 
 /// ANOTHER MODUL -> CONFIGURATOR
 protocol LessonsConfiguratorProtocol: class {
+    func configureWithPush(from: Viewable)
+    func configureWithPresent(from: Viewable)
     func configure() -> LessonsViewController
 }

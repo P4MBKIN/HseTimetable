@@ -47,7 +47,7 @@ final class ReminderViewController: UIViewController, ReminderViewProtocol {
                 self?.prioritySlider.value = Float(reminderData.priority)
                 self?.alarmDatePicker.date = reminderData.alarmDate ?? Date()
             })
-        .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.presenter.outputs.error.asObserver()
             .subscribe(onNext: { [weak self] error in
@@ -55,7 +55,7 @@ final class ReminderViewController: UIViewController, ReminderViewProtocol {
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self?.present(alert, animated: true)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())

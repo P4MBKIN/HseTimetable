@@ -38,17 +38,17 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
         /// Inputs setup
         self.viewDidLoadTrigger.asObserver()
             .bind(to: self.dependencies.interactor.inputs.dataBaseLessonsTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.refreshControlTrigger.asObserver()
             .withLatestFrom(Observable.just(self.lessonsSearchParams))
             .bind(to: self.dependencies.interactor.inputs.searchLessonsTrigger)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.didSelectLessonTrigger.asObservable()
             .map{ (self.lessons.value[$0.0], $0.1) }
             .bind(to: self.dependencies.router.inputs.presentLessonEvent)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Outputs setup
         self.dependencies.interactor.outputs.searchLessonsResponse.asObservable()
@@ -56,11 +56,11 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
                 self?.opens = Array(repeating: false, count: list.count)
                 self?.lessons.accept(list)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.dependencies.interactor.outputs.errorResponse.asObservable()
             .bind(to: self.error)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
     }
 }
 

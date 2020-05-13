@@ -70,7 +70,7 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
                 self?.absentView.isHidden = !lessons.isEmpty
                 self?.lessonsTableView.reloadData()
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         // Error received
         self.presenter.outputs.error.asObserver()
@@ -80,7 +80,7 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self?.present(alert, animated: true)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())

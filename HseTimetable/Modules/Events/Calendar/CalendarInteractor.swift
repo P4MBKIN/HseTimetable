@@ -34,18 +34,18 @@ final class CalendarInteractor: CalendarInteractorProtocol, CalendarInteractorIn
         /// Inputs setup
         self.addEventTrigger.asObserver()
             .bind(to: self.addEventAction.inputs)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Outputs setup
         self.addEventAction.elements.asObservable()
             .bind(to: self.addEventResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Errors setup
         self.addEventAction.errors.asObservable()
             .map{ $0.get() }
             .bind(to: self.errorResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
     }
 }
 

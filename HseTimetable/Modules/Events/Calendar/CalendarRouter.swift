@@ -19,16 +19,16 @@ final class CalendarRouter: CalendarRouterProtocol, CalendarRouterInputsProtocol
     /// Inputs
     let dismissTrigger = PublishSubject<Void>()
     
-    private let disposalBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     required init(view: Viewable) {
         self.view = view
         
-        /// Setup inputs
+        /// Inputs setup
         self.dismissTrigger.asObserver()
             .subscribe(onNext: { [weak self] _ in
                 self?.view.dismiss(animated: true)
             })
-        .disposed(by: disposalBag)
+        .disposed(by: self.disposeBag)
     }
 }

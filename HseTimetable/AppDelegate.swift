@@ -17,9 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let lessonsConfigurator: LessonsConfigurator = LessonsConfigurator()
-        let lessonsViewController = lessonsConfigurator.configure()
-        let navigationController = UINavigationController(rootViewController: lessonsViewController)
+        let authConfigurator: AuthConfigurator = AuthConfigurator()
+        let authViewController = authConfigurator.configure()
+        let navigationController = UINavigationController(rootViewController: authViewController)
+//        let lessonsConfigurator: LessonsConfigurator = LessonsConfigurator()
+//        let lessonsViewController = lessonsConfigurator.configure()
+//        let navigationController = UINavigationController(rootViewController: lessonsViewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         return true

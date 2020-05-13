@@ -40,7 +40,8 @@ class LessonsAbsentView: UIView {
     }()
     
     private let chevronImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "chevron"))
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "chevron")
         return imageView
     }()
     

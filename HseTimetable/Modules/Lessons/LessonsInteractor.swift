@@ -40,40 +40,40 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         /// Inputs setup
         self.dataBaseLessonsTrigger.asObserver()
             .bind(to: self.dbGetAction.inputs)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.searchLessonsTrigger.asObserver()
             .bind(to: self.searchLessonsAction.inputs)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Outputs setup
         self.dbGetAction.elements.asObservable()
             .bind(to: self.searchLessonsResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.dbUpdateAction.elements.asObservable()
             .bind(to: self.dbGetAction.inputs)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.searchLessonsAction.elements.asObservable()
             .bind(to: self.dbUpdateAction.inputs)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         /// Errors setup
         self.dbGetAction.errors.asObservable()
             .map{ $0.get() }
             .bind(to: self.errorResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.dbUpdateAction.errors.asObservable()
             .map{ $0.get() }
             .bind(to: self.errorResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.searchLessonsAction.errors.asObservable()
             .map{ $0.get() }
             .bind(to: self.errorResponse)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
     }
 }
 

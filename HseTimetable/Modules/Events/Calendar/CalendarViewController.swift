@@ -59,7 +59,7 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
                 let index = self?.alarmIntervalNames.firstIndex{ $0.0 == eventData.alarmInterval } ?? 0
                 self?.alarmPickerView.selectRow(index, inComponent: 0, animated: false)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         self.presenter.outputs.error.asObserver()
             .subscribe(onNext: { [weak self] error in
@@ -67,7 +67,7 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self?.present(alert, animated: true)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
