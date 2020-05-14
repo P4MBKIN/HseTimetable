@@ -42,6 +42,19 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
     }
     
     private func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtonTouchUpInside))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTouchUpInside))
         
@@ -82,6 +95,25 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
         let dataFromView = CalendarEventData(title: self.titleTextField.text ?? "", startDate: self.startDatePicker.date, endDate: self.endDatePicker.date, alarmInterval: self.alarmIntervalNames[self.alarmPickerView.selectedRow(inComponent: 0)].0)
         self.presenter.inputs.addButtonTrigger.onNext(dataFromView)
     }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let textViewResponder = self.view.getSelectedTextView() else { return }
+        guard let positionResponder = self.view.getPositionOfView(view: textViewResponder) else { return }
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let paddingTextView = self.view.frame.height - (positionResponder.origin.y + positionResponder.height)
+            if keyboardSize.height > paddingTextView + 20 {
+                self.view.frame.origin.y -= (keyboardSize.height - paddingTextView) + 20
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        print(self.view.frame.origin.y)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 
 // MARK:- Picker View Data Sourse
@@ -101,6 +133,15 @@ extension CalendarViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.alarmIntervalNames[row].1
+    }
+}
+
+// MARK: - Text Field Delegate
+extension CalendarViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
     }
 }
 

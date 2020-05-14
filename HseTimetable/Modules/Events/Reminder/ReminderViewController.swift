@@ -28,6 +28,19 @@ final class ReminderViewController: UIViewController, ReminderViewProtocol {
     }
     
     private func setup() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtonTouchUpInside))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTouchUpInside))
         
@@ -74,6 +87,43 @@ final class ReminderViewController: UIViewController, ReminderViewProtocol {
     @objc private func addButtonTouchUpInside() {
         let dataFromView = ReminderEventData(title: self.titleTextField.text ?? "", priority: Int(self.prioritySlider.value), notes: self.notesTextView.text, alarmDate: self.alarmDatePicker.date)
         self.presenter.inputs.addButtonTrigger.onNext(dataFromView)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let textViewResponder = self.view.getSelectedTextView() else { return }
+        guard let positionResponder = self.view.getPositionOfView(view: textViewResponder) else { return }
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let paddingTextView = self.view.frame.height - (positionResponder.origin.y + positionResponder.height)
+            if keyboardSize.height > paddingTextView + 20 {
+                self.view.frame.origin.y -= (keyboardSize.height - paddingTextView) + 20
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        print(self.view.frame.origin.y)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+}
+
+// MARK: - Text Field Delegate
+extension ReminderViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+}
+
+// MARK: - Text View Delegate
+extension ReminderViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" { textView.endEditing(true) }
+        return true
     }
 }
 

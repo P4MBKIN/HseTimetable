@@ -30,6 +30,19 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     private func setup() {
         self.navigationController?.isNavigationBarHidden = true
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        
         setupSignInButton()
         setupEmailTextField()
         
@@ -128,6 +141,22 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
         setState(state: .loading)
         self.presenter.inputs.emailChangedTrigger.onNext(sender.text)
     }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let padding = self.view.frame.height - (self.signInButton.frame.origin.y + self.signInButton.frame.height)
+            if keyboardSize.height > padding + 20 {
+                self.view.frame.origin.y -= (keyboardSize.height - padding) + 20
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        print(self.view.frame.origin.y)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 
 enum StateAuth {
@@ -135,6 +164,15 @@ enum StateAuth {
     case loading
     case success
     case fail
+}
+
+// MARK: - Text Field Delegate
+extension AuthViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
 }
 
 // MARK: - Viewable

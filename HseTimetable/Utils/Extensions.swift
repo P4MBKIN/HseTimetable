@@ -49,3 +49,56 @@ extension UIColor {
         }
     }
 }
+
+extension UIView {
+    
+    func getSelectedTextView() -> UIView? {
+        let totalResults = getTextViewsInView(view: self)
+        
+        for textView in totalResults{
+            if textView.isFirstResponder{
+                return textView
+            }
+        }
+        
+        return nil
+    }
+    
+    func getPositionOfView(view: UIView) -> CGRect? {
+        func getPositionOfSubview(firstView: UIView, secondView: UIView, view: UIView) -> CGRect? {
+            for subview in secondView.subviews as [UIView] {
+                if subview == view { return firstView.convert(subview.frame, from: secondView) }
+                if let position = getPositionOfSubview(firstView: secondView, secondView: subview, view: view) {
+                    return firstView.convert(position, from: secondView)
+                }
+            }
+            
+            return nil
+        }
+        
+        for subview in self.subviews as [UIView] {
+            if subview == view { return subview.frame }
+            if let position = getPositionOfSubview(firstView: view, secondView: subview, view: view) {
+                return position
+            }
+        }
+        
+        return nil
+    }
+    
+    private func getTextViewsInView(view: UIView) -> [UIView] {
+        var totalResults = [UIView]()
+        
+        for subview in view.subviews as [UIView] {
+            if let textField = subview as? UITextField {
+                totalResults.append(textField)
+            } else if let textView = subview as? UITextView {
+                totalResults.append(textView)
+            } else {
+                totalResults.append(contentsOf: getTextViewsInView(view: subview))
+            }
+        }
+        
+        return totalResults
+    }
+}
