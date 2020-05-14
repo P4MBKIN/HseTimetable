@@ -27,6 +27,7 @@ final class ReminderPresenter: ReminderPresenterProtocol, ReminderPresenterInput
     let error = PublishSubject<Error>()
     
     private let lesson: Lesson
+    
     private let disposeBag = DisposeBag()
     
     required init(dependencies: ReminderPresenterDependencies, lesson: Lesson) {
@@ -39,6 +40,10 @@ final class ReminderPresenter: ReminderPresenterProtocol, ReminderPresenterInput
             .withLatestFrom(Observable.just(self.lesson))
             .map{ ReminderEventData(title: $0.discipline ?? "", priority: 0, notes: "Не забыть: ", alarmDate: $0.dateStart) }
             .bind(to: self.viewConfigure)
+            .disposed(by: self.disposeBag)
+        
+        self.viewDidLoadTrigger.asObservable()
+            .bind(to: self.dependencies.interactor.inputs.checkAccessTrigger)
             .disposed(by: self.disposeBag)
         
         self.closeButtonTrigger.asObserver()

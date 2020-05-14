@@ -42,7 +42,7 @@ protocol LessonsPresenterProtocol: class {
 /// PRESENTER -> INTERACTOR
 protocol LessonsInteractorInputsProtocol: class {
     var dataBaseLessonsTrigger: PublishSubject<Void> { get }
-    var searchLessonsTrigger: PublishSubject<LessonsSearchParams> { get }
+    var searchLessonsTrigger: PublishSubject<Int> { get }
 }
 
 /// INTERACTOR -> PRESENTER

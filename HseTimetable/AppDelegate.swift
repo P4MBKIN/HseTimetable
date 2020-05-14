@@ -17,12 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let authConfigurator: AuthConfigurator = AuthConfigurator()
-        let authViewController = authConfigurator.configure()
-        let navigationController = UINavigationController(rootViewController: authViewController)
-//        let lessonsConfigurator: LessonsConfigurator = LessonsConfigurator()
-//        let lessonsViewController = lessonsConfigurator.configure()
-//        let navigationController = UINavigationController(rootViewController: lessonsViewController)
+        var viewController: UIViewController
+        if UserDefaults.standard.object(forKey: "studentId") != nil {
+            let lessonsConfigurator: LessonsConfiguratorProtocol = LessonsConfigurator()
+            viewController = lessonsConfigurator.configure()
+        } else {
+            let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
+            viewController = authConfigurator.configure()
+        }
+        let navigationController = UINavigationController(rootViewController: viewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         return true

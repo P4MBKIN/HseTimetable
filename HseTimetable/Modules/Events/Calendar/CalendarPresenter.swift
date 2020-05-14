@@ -27,6 +27,7 @@ final class CalendarPresenter: CalendarPresenterProtocol, CalendarPresenterInput
     let error = PublishSubject<Error>()
     
     private let lesson: Lesson
+    
     private let disposeBag = DisposeBag()
     
     required init(dependencies: CalendarPresenterDependencies, lesson: Lesson) {
@@ -39,6 +40,10 @@ final class CalendarPresenter: CalendarPresenterProtocol, CalendarPresenterInput
             .withLatestFrom(Observable.just(self.lesson))
             .map{ CalendarEventData(title: $0.discipline ?? "", startDate: $0.dateStart ?? Date(), endDate: $0.dateEnd ?? Date(), alarmInterval: nil) }
             .bind(to: self.viewConfigure)
+            .disposed(by: self.disposeBag)
+        
+        self.viewDidLoadTrigger.asObserver()
+            .bind(to: self.dependencies.interactor.inputs.checkAccessTrigger)
             .disposed(by: self.disposeBag)
         
         self.closeButtonTrigger.asObserver()

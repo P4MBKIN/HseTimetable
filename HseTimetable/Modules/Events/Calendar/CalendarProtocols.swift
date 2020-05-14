@@ -40,6 +40,7 @@ protocol CalendarPresenterProtocol: class {
 
 /// PRESENTER -> INTERACTOR
 protocol CalendarInteractorInputsProtocol: class {
+    var checkAccessTrigger: PublishSubject<Void> { get }
     var addEventTrigger: PublishSubject<CalendarEventData> { get }
 }
 

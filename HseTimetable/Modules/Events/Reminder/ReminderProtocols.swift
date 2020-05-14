@@ -40,6 +40,7 @@ protocol ReminderPresenterProtocol: class {
 
 /// PRESENTER -> INTERACTOR
 protocol ReminderInteractorInputsProtocol: class {
+    var checkAccessTrigger: PublishSubject<Void> { get }
     var addEventTrigger: PublishSubject<ReminderEventData> { get }
 }
 

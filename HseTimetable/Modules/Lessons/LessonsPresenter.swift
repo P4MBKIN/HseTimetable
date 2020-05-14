@@ -27,13 +27,14 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     let lessons = BehaviorRelay<[Lesson]>(value: [])
     let error = PublishSubject<Error>()
     
-    private var lessonsSearchParams: LessonsSearchParams
+    private var daysOffset: Int
+    
     private let disposeBag = DisposeBag()
     
     required init(dependencies: LessonsPresenterDependencies) {
         self.dependencies = dependencies
         
-        self.lessonsSearchParams = LessonsSearchParams(studentId: 203843, daysOffset: 7, dateFrom: Date.init())
+        self.daysOffset = 7
         
         /// Inputs setup
         self.viewDidLoadTrigger.asObserver()
@@ -41,7 +42,7 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
             .disposed(by: self.disposeBag)
         
         self.refreshControlTrigger.asObserver()
-            .withLatestFrom(Observable.just(self.lessonsSearchParams))
+            .withLatestFrom(Observable.just(self.daysOffset))
             .bind(to: self.dependencies.interactor.inputs.searchLessonsTrigger)
             .disposed(by: self.disposeBag)
         

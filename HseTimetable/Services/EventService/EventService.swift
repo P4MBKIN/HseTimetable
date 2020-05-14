@@ -41,6 +41,8 @@ class EventService: EventServiceProtocol {
 
 extension EventService: CalendarEventProtocol {
     
+    func checkCalendarAccess() -> Error? { return checkEventKitAccess(for: .event) }
+    
     func createCalendarEvent(data: CalendarEventData) -> Error? {
         if let error = checkEventKitAccess(for: .event) { return error }
         if checkCalendarEventAlreadyExists(data: data) { return EventServiceError.eventCalendarAlreadyExists }
@@ -71,6 +73,8 @@ extension EventService: CalendarEventProtocol {
 }
 
 extension EventService: ReminderEventProtocol {
+    
+    func checkReminderAccess() -> Error? { return checkEventKitAccess(for: .reminder) }
     
     func createReminderEvent(data: ReminderEventData) -> Error? {
         if let error = checkEventKitAccess(for: .reminder) { return error }

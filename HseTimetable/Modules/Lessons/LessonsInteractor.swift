@@ -18,7 +18,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     
     /// Inputs
     let dataBaseLessonsTrigger = PublishSubject<Void>()
-    let searchLessonsTrigger = PublishSubject<LessonsSearchParams>()
+    let searchLessonsTrigger = PublishSubject<Int>()
     
     /// Outputs
     let searchLessonsResponse = PublishSubject<[Lesson]>()
@@ -26,7 +26,8 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     
     private let dbGetAction: Action<Void, [Lesson]>
     private let dbUpdateAction: Action<[Lesson], Void>
-    private let searchLessonsAction: Action<LessonsSearchParams, [Lesson]>
+    private let searchLessonsAction: Action<Int, [Lesson]>
+    
     private let disposeBag = DisposeBag()
     
     static private let dataService: DataServiceProtocol = DataService()
@@ -35,7 +36,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     required init() {
         self.dbGetAction = Action { return LessonsInteractor.getLessonsFromDB() }
         self.dbUpdateAction = Action { lessons in return LessonsInteractor.updateLessonsToDB(lessons: lessons) }
-        self.searchLessonsAction = Action { params in return LessonsInteractor.getLessonsFromNetwork(params: params) }
+        self.searchLessonsAction = Action { daysOffset in return LessonsInteractor.getLessonsFromNetwork(daysOffset: daysOffset) }
         
         /// Inputs setup
         self.dataBaseLessonsTrigger.asObserver()
@@ -112,9 +113,11 @@ extension LessonsInteractor {
         }
     }
     
-    private static func getLessonsFromNetwork(params: LessonsSearchParams) -> Single<[Lesson]> {
+    private static func getLessonsFromNetwork(daysOffset: Int) -> Single<[Lesson]> {
         return Single<[Lesson]>.create{ observer in
-            LessonsInteractor.networkService.lessonsGet(studentId: params.studentId, daysOffset: params.daysOffset, dateFrom: params.dateFrom) { (lessons: [Lesson]?, responseError: ResponseError?, error) in
+            let studentId = UserDefaults.standard.integer(forKey: "studentId")
+            let dateFrom = Date.init()
+            LessonsInteractor.networkService.lessonsGet(studentId: studentId, daysOffset: daysOffset, dateFrom: dateFrom) { (lessons: [Lesson]?, responseError: ResponseError?, error) in
                 guard responseError == nil else {
                     observer(.error(responseError!))
                     return

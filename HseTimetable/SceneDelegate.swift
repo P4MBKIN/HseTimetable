@@ -21,12 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let authConfigurator: AuthConfigurator = AuthConfigurator()
-        let authViewController = authConfigurator.configure()
-        let navigationController = UINavigationController(rootViewController: authViewController)
-//        let lessonsConfigurator: LessonsConfigurator = LessonsConfigurator()
-//        let lessonsViewController = lessonsConfigurator.configure()
-//        let navigationController = UINavigationController(rootViewController: lessonsViewController)
+        var viewController: UIViewController
+        if UserDefaults.standard.object(forKey: "studentId") != nil {
+            let lessonsConfigurator: LessonsConfiguratorProtocol = LessonsConfigurator()
+            viewController = lessonsConfigurator.configure()
+        } else {
+            let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
+            viewController = authConfigurator.configure()
+        }
+        let navigationController = UINavigationController(rootViewController: viewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }

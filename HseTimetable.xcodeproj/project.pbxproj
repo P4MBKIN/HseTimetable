@@ -41,7 +41,6 @@
 		E946A16B244D842B00A3F07C /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16A244D842B00A3F07C /* Lesson.swift */; };
 		E946A16D244E5FBE00A3F07C /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16C244E5FBE00A3F07C /* LessonsViewController.swift */; };
 		E946A16F244E61AB00A3F07C /* LessonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */; };
-		E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A170244E638600A3F07C /* LessonsSearchParams.swift */; };
 		E946A173244E66B000A3F07C /* LessonsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A172244E66B000A3F07C /* LessonsInteractor.swift */; };
 		E946A175244E6AEF00A3F07C /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A174244E6AEF00A3F07C /* ResponseError.swift */; };
 		E946A177244E70B800A3F07C /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946A176244E70B800A3F07C /* DataServiceProtocol.swift */; };
@@ -115,7 +114,6 @@
 		E946A16A244D842B00A3F07C /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		E946A16C244E5FBE00A3F07C /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
 		E946A16E244E61AB00A3F07C /* LessonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsPresenter.swift; sourceTree = "<group>"; };
-		E946A170244E638600A3F07C /* LessonsSearchParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsSearchParams.swift; sourceTree = "<group>"; };
 		E946A172244E66B000A3F07C /* LessonsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsInteractor.swift; sourceTree = "<group>"; };
 		E946A174244E6AEF00A3F07C /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		E946A176244E70B800A3F07C /* DataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				E946A16A244D842B00A3F07C /* Lesson.swift */,
 				E9C9CE8F246BCCA200195246 /* Auth.swift */,
 				E946A174244E6AEF00A3F07C /* ResponseError.swift */,
-				E946A170244E638600A3F07C /* LessonsSearchParams.swift */,
 				E946A188244EED9400A3F07C /* EventSegue.swift */,
 				E946A1AB24509D3200A3F07C /* CalendarEventData.swift */,
 				E9F96A8824535C59005F2BB9 /* ReminderEventData.swift */,
@@ -557,7 +554,6 @@
 				E946A181244E751200A3F07C /* BaseOptions.swift in Sources */,
 				E946A1AC24509D3200A3F07C /* CalendarEventData.swift in Sources */,
 				E9C9CE82246A3BAA00195246 /* AuthRouter.swift in Sources */,
-				E946A171244E638600A3F07C /* LessonsSearchParams.swift in Sources */,
 				E946A1A12450110400A3F07C /* CalendarConfigurator.swift in Sources */,
 				E946A137244C187200A3F07C /* BaseUrl.swift in Sources */,
 				E946A126244C158E00A3F07C /* NetworkService.swift in Sources */,
