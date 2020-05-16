@@ -60,5 +60,5 @@ final class AuthPresenter: AuthPresenterProtocol, AuthPresenterInputsProtocol, A
     }
 }
 
-// MARK: - Presenterable
+// MARK:- Presenterable
 extension AuthPresenter: Presenterable {}

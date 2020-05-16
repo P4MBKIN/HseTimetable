@@ -19,14 +19,17 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     /// Inputs
     let dataBaseLessonsTrigger = PublishSubject<Void>()
     let searchLessonsTrigger = PublishSubject<Int>()
+    let removeStudentTrigger = PublishSubject<Void>()
     
     /// Outputs
     let searchLessonsResponse = PublishSubject<[Lesson]>()
+    let removeStudentResponse = PublishSubject<Void>()
     let errorResponse = PublishSubject<Error>()
     
     private let dbGetAction: Action<Void, [Lesson]>
     private let dbUpdateAction: Action<[Lesson], Void>
     private let searchLessonsAction: Action<Int, [Lesson]>
+    private let removeStrudentAction: Action<Void, Void>
     
     private let disposeBag = DisposeBag()
     
@@ -37,6 +40,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         self.dbGetAction = Action { return LessonsInteractor.getLessonsFromDB() }
         self.dbUpdateAction = Action { lessons in return LessonsInteractor.updateLessonsToDB(lessons: lessons) }
         self.searchLessonsAction = Action { daysOffset in return LessonsInteractor.getLessonsFromNetwork(daysOffset: daysOffset) }
+        self.removeStrudentAction = Action { return LessonsInteractor.removeStudent() }
         
         /// Inputs setup
         self.dataBaseLessonsTrigger.asObserver()
@@ -45,6 +49,10 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         
         self.searchLessonsTrigger.asObserver()
             .bind(to: self.searchLessonsAction.inputs)
+            .disposed(by: self.disposeBag)
+        
+        self.removeStudentTrigger.asObserver()
+            .bind(to: self.removeStrudentAction.inputs)
             .disposed(by: self.disposeBag)
         
         /// Outputs setup
@@ -60,6 +68,10 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
             .bind(to: self.dbUpdateAction.inputs)
             .disposed(by: self.disposeBag)
         
+        self.removeStrudentAction.elements.asObservable()
+            .bind(to: self.removeStudentResponse)
+            .disposed(by: self.disposeBag)
+        
         /// Errors setup
         self.dbGetAction.errors.asObservable()
             .map{ $0.get() }
@@ -72,6 +84,11 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
             .disposed(by: self.disposeBag)
         
         self.searchLessonsAction.errors.asObservable()
+            .map{ $0.get() }
+            .bind(to: self.errorResponse)
+            .disposed(by: self.disposeBag)
+        
+        self.removeStrudentAction.errors.asObservable()
             .map{ $0.get() }
             .bind(to: self.errorResponse)
             .disposed(by: self.disposeBag)
@@ -128,6 +145,19 @@ extension LessonsInteractor {
                 }
                 if let lessons = lessons { observer(.success(lessons)) }
             }
+            return Disposables.create()
+        }
+    }
+    
+    private static func removeStudent() -> Single<Void> {
+        return Single<Void>.create{ observer in
+            if let error = LessonsInteractor.dataService.deleteLessonsData(filter: nil) {
+                observer(.error(error))
+                return Disposables.create()
+            }
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: "studentId")
+            observer(.success(()))
             return Disposables.create()
         }
     }

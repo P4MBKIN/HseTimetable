@@ -43,7 +43,7 @@ public class NetStatus {
         return self.monitor?.currentPath.isExpensive ?? false
     }
     
-    // MARK: - Init & Deinit
+    // MARK:- Init & Deinit
     private init() {
         
     }
@@ -52,7 +52,7 @@ public class NetStatus {
         stopMonitoring()
     }
     
-    // MARK: - Method Implementation
+    // MARK:- Method Implementation
     public func startMonitoring() {
         guard !self.isMonitoring else { return }
         

@@ -24,7 +24,7 @@ class LessonsAbsentView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 3
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: Size.large.font, weight: .bold)
+        label.font = .systemFont(ofSize: Size.large.font, weight: .bold)
         label.text = "У вас нет занятий".uppercased()
         return label
     }()
@@ -34,7 +34,7 @@ class LessonsAbsentView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 3
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: Size.common.font, weight: .medium)
+        label.font = .systemFont(ofSize: Size.common.font, weight: .medium)
         label.text = "Потяните чтобы обновить".uppercased()
         return label
     }()

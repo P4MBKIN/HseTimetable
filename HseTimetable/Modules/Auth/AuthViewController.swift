@@ -55,7 +55,7 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     }
     
     private func setupSignInButton() {
-        self.signInButton.layer.cornerRadius = 12.0
+        self.signInButton.layer.cornerRadius = Size.common.cornerRadius
         setStateButton(state: .none)
     }
     
@@ -145,14 +145,13 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let padding = self.view.frame.height - (self.signInButton.frame.origin.y + self.signInButton.frame.height)
-            if keyboardSize.height > padding + 20 {
-                self.view.frame.origin.y -= (keyboardSize.height - padding) + 20
+            if keyboardSize.height > padding + Size.large.indent {
+                self.view.frame.origin.y -= (keyboardSize.height - padding) + Size.large.indent
             }
         }
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-        print(self.view.frame.origin.y)
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
@@ -166,7 +165,7 @@ enum StateAuth {
     case fail
 }
 
-// MARK: - Text Field Delegate
+// MARK:- Text Field Delegate
 extension AuthViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -175,5 +174,5 @@ extension AuthViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Viewable
+// MARK:- Viewable
 extension AuthViewController: Viewable {}

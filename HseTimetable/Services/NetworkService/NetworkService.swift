@@ -10,6 +10,7 @@ import Foundation
 
 class NetworkService {}
 
+// MARK:- Networkd Lessons Protocol methods
 extension NetworkService: NetworkLessonsServiceProtocol {
     
     func lessonsGet<Model: Decodable, ErrorModel: Decodable>(studentId: Int,
@@ -38,6 +39,7 @@ extension NetworkService: NetworkLessonsServiceProtocol {
     }
 }
 
+// MARK:- Network Auth Protocol methods
 extension NetworkService: NetworkAuthServiceProtocol {
     
     func studentGet<Model: Decodable, ErrorModel: Decodable>(email: String,

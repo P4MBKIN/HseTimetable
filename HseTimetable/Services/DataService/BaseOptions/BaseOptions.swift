@@ -13,7 +13,7 @@ struct BaseOptions<Model: Object> {
     
 }
 
-// MARK: - Base Get Protocol methods
+// MARK:- Base Get Protocol methods
 extension BaseOptions: BaseGetProtocol {
     
     typealias TG = Model
@@ -31,7 +31,7 @@ extension BaseOptions: BaseGetProtocol {
     }
 }
 
-// MARK: - Base Delete Protocol methods
+// MARK:- Base Delete Protocol methods
 extension BaseOptions: BaseDeleteProtocol {
     
     typealias TD = Model
@@ -39,45 +39,50 @@ extension BaseOptions: BaseDeleteProtocol {
     func delete(filter: String?) -> Error? {
         var error: Error? = nil
         
-        let group = DispatchGroup()
-        DispatchQueue.main.async(group: group) {
+        let closure: (String?) -> Error? = { filter in
             do {
                 let realm = try Realm()
-                let result = realm.objects(Model.self)
+                var results = realm.objects(Model.self)
+                if let filter = filter { results = results.filter(filter) }
                 realm.beginWrite()
-                realm.delete(result)
+                realm.delete(results)
                 try realm.commitWrite()
-            } catch let e {
-                error = e
+                return nil
+            } catch let error {
+                return error
             }
         }
-        group.wait()
+        
+        if Thread.isMainThread { error = closure(filter) }
+        else { DispatchQueue.main.sync { error = closure(filter) }}
         
         return error
     }
 }
 
-// MARK: - Base Put Protocol methods
+// MARK:- Base Put Protocol methods
 extension BaseOptions: BasePutProtocol {
     
     typealias TP = Model
     
     func put(object: Model) -> Error? {
         var error: Error? = nil
-
-        let group = DispatchGroup()
-        DispatchQueue.main.async(group: group) {
+        
+        let closure: (Model) -> Error? = { object in
             do {
                 let realm = try Realm()
                 realm.beginWrite()
                 realm.add(object, update: .all)
                 realm.add(object)
                 try realm.commitWrite()
-            } catch let e {
-                error = e
+                return nil
+            } catch let error {
+                return error
             }
         }
-        group.wait()
+
+        if Thread.isMainThread { error = closure(object) }
+        else { DispatchQueue.main.sync { error = closure(object) }}
         
         return error
     }
@@ -85,18 +90,20 @@ extension BaseOptions: BasePutProtocol {
     func put(objects: [Model]) -> Error? {
         var error: Error? = nil
         
-        let group = DispatchGroup()
-        DispatchQueue.main.async(group: group) {
+        let closure: ([Model]) -> Error? = { objects in
             do {
                 let realm = try Realm()
                 realm.beginWrite()
                 realm.add(objects, update: .all)
                 try realm.commitWrite()
-            } catch let e {
-                error = e
+                return nil
+            } catch let error {
+                return error
             }
         }
-        group.wait()
+        
+        if Thread.isMainThread { error = closure(objects) }
+        else { DispatchQueue.main.sync { error = closure(objects) }}
         
         return error
     }

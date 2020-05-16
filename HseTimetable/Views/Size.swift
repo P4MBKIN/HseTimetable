@@ -30,7 +30,7 @@ enum Size {
         case .common: return 15.0
         case .double: return Size.double.cornerRadius * 2
         case .small: return 5.0
-        case .large: return 25.0
+        case .large: return 40.0
         }
     }
     

@@ -19,6 +19,7 @@ protocol LessonsPresenterInputsProtocol: class {
     var viewDidLoadTrigger: PublishSubject<Void> { get }
     var refreshControlTrigger: PublishSubject<Void> { get }
     var didSelectLessonTrigger: PublishSubject<(Int, EventSegueType)> { get }
+    var logoutTrigger: PublishSubject<Void> { get }
 }
 
 /// PRESENTER -> VIEW
@@ -43,11 +44,13 @@ protocol LessonsPresenterProtocol: class {
 protocol LessonsInteractorInputsProtocol: class {
     var dataBaseLessonsTrigger: PublishSubject<Void> { get }
     var searchLessonsTrigger: PublishSubject<Int> { get }
+    var removeStudentTrigger: PublishSubject<Void> { get }
 }
 
 /// INTERACTOR -> PRESENTER
 protocol LessonsInteractorOutputsProtocol: class {
     var searchLessonsResponse: PublishSubject<[Lesson]> { get }
+    var removeStudentResponse: PublishSubject<Void> { get }
     var errorResponse: PublishSubject<Error> { get }
 }
 
@@ -59,6 +62,7 @@ protocol LessonsInteractorProtocol: class {
 /// PRESENTER -> ROUTER
 protocol LessonsRouterInputsProtocol: class {
     var presentLessonEvent: PublishSubject<(Lesson, EventSegueType)> { get }
+    var pushAuthTrigger: PublishSubject<Void> { get }
 }
 
 protocol LessonsRouterProtocol: class {
@@ -69,5 +73,6 @@ protocol LessonsRouterProtocol: class {
 protocol LessonsConfiguratorProtocol: class {
     func configureWithPush(from: Viewable)
     func configureWithPresent(from: Viewable)
+    func configureWithMove()
     func configure() -> LessonsViewController
 }

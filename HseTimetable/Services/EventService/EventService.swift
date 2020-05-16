@@ -39,6 +39,7 @@ class EventService: EventServiceProtocol {
     }
 }
 
+// MARK:- Calendar Event Protocol methods
 extension EventService: CalendarEventProtocol {
     
     func checkCalendarAccess() -> Error? { return checkEventKitAccess(for: .event) }
@@ -72,6 +73,7 @@ extension EventService: CalendarEventProtocol {
     }
 }
 
+// MARK:- Reminder Event Protocol methods
 extension EventService: ReminderEventProtocol {
     
     func checkReminderAccess() -> Error? { return checkEventKitAccess(for: .reminder) }

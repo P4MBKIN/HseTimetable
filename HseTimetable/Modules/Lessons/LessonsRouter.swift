@@ -18,6 +18,7 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
     
     /// Inputs
     let presentLessonEvent = PublishSubject<(Lesson, EventSegueType)>()
+    let pushAuthTrigger = PublishSubject<Void>()
     
     private let disposeBag = DisposeBag()
     
@@ -40,5 +41,13 @@ final class LessonsRouter: LessonsRouterProtocol, LessonsRouterInputsProtocol, R
                 }
             })
         .disposed(by: self.disposeBag)
+        
+        self.pushAuthTrigger.asObserver()
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { _ in
+                let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
+                authConfigurator.configureWithMove()
+            })
+            .disposed(by: self.disposeBag)
     }
 }

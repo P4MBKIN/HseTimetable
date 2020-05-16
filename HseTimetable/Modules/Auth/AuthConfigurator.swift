@@ -22,6 +22,11 @@ final class AuthConfigurator: AuthConfiguratorProtocol {
         from.present(nav, animated: true)
     }
     
+    func configureWithMove() {
+        let view = configure()
+        view.move(animated: true)
+    }
+    
     func configure() -> AuthViewController {
         let viewController = AuthViewController()
         let interactor: AuthInteractorProtocol = AuthInteractor()
@@ -32,5 +37,5 @@ final class AuthConfigurator: AuthConfiguratorProtocol {
     }
 }
 
-// MARK: - Configuratorable
+// MARK:- Configuratorable
 extension AuthConfigurator: Configuratorable {}

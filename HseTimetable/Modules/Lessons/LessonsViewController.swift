@@ -24,9 +24,31 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         return view
     }()
     
-    var siriButton: INUIAddVoiceShortcutButton = {
+    var logoutImage: UIImage? = {
+        var image = UIImage(named: "logout")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        image = image?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: -Size.double.indent, right: 0))
+        return image
+    }()
+    
+    lazy var alertView: AlertView = {
+        let view = AlertView()
+        view.delegate = self
+        return view
+    }()
+    
+    var visualEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var siriButton: INUIAddVoiceShortcutButton = {
         let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+        button.shortcut = INShortcut(intent: self.intent)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.delegate = self
         return button
     }()
     
@@ -47,13 +69,14 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     }
     
     private func setup() {
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        
+        let logoutBarButtonItem = UIBarButtonItem(image: self.logoutImage, style: .plain, target: self, action: #selector(logoutTouchUpInside(sender:)))
+        self.navigationItem.rightBarButtonItem = logoutBarButtonItem
         
         setAbsentView()
         
         setSiriButton()
-        self.siriButton.shortcut = INShortcut(intent: self.intent )
-        self.siriButton.delegate = self
         
         self.lessonsTableView.register(LessonsTableViewCell.self, forCellReuseIdentifier: LessonsTableViewCell.reuseId)
         self.lessonsTableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.reuseId)
@@ -108,6 +131,47 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         }
     }
     
+    private func setVisualEffect() {
+        self.navigationController?.view.addSubview(self.visualEffectView)
+        self.visualEffectView.snp.remakeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setAlert() {
+        self.navigationController?.view.addSubview(self.alertView)
+        self.alertView.snp.remakeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    // MARK:- Animations
+    private func animateInAlert() {
+        setVisualEffect()
+        self.visualEffectView.alpha = 0.0
+        
+        setAlert()
+        self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.alertView.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.alpha = 1.0
+            self.alertView.alpha = 1.0
+            self.alertView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    private func animateOutAlert(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.visualEffectView.alpha = 0.0
+            self.alertView.alpha = 0.0
+            self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { _ in
+            self.visualEffectView.removeFromSuperview()
+            self.alertView.removeFromSuperview()
+            if let completion = completion { completion() }
+        }
+    }
     
     // MARK:- Views events
     @objc private func refreshControlValueChanged(sender: UIRefreshControl) {
@@ -121,9 +185,20 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
     @objc private func reminderButtonTouchUpInside(sender: UIButton) {
         self.presenter.inputs.didSelectLessonTrigger.onNext((sender.tag, EventSegueType.lessonsToReminder(.present)))
     }
+    
+    @objc private func logoutTouchUpInside(sender: UIBarButtonItem) {
+        self.alertView.setup(
+            title: "Внимание!",
+            message: "Если Вы выйдете из аккаунта, все данные о расписании будут удалены с этого девайса.\nВы действительно хотите выйти из аккаунта?",
+            leftButtonTitle: "Отменить",
+            rightButtonTitle: "Да",
+            alertId: .logout
+        )
+        animateInAlert()
+    }
 }
 
-// MARK: - Table View Data Source
+// MARK:- Table View Data Source
 extension LessonsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -153,7 +228,7 @@ extension LessonsViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Table View Delegate
+// MARK:- Table View Delegate
 extension LessonsViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -187,6 +262,26 @@ extension LessonsViewController: UITableViewDelegate {
         /// reload table rows
         let paths = indexes.map{ IndexPath(row: 1, section: $0) }
         self.lessonsTableView.reloadRows(at: paths, with: .none)
+    }
+}
+
+// MARK:- Alert Delegate
+extension LessonsViewController: AlertDelegate {
+    
+    func leftButtonTapped(from alertId: AlertId) {
+        switch alertId {
+        case .logout:
+            animateOutAlert(completion: nil)
+        default: break
+        }
+    }
+    
+    func rightButtonTapped(from alertId: AlertId) {
+        switch alertId {
+        case .logout:
+            animateOutAlert(completion: { self.presenter.inputs.logoutTrigger.onNext(()) })
+        default: break
+        }
     }
 }
 

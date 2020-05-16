@@ -68,5 +68,6 @@ protocol AuthRouterProtocol: class {
 protocol AuthConfiguratorProtocol: class {
     func configureWithPush(from: Viewable)
     func configureWithPresent(from: Viewable)
+    func configureWithMove()
     func configure() -> AuthViewController
 }

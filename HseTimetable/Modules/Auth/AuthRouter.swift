@@ -27,9 +27,9 @@ final class AuthRouter: AuthRouterProtocol, AuthRouterInputsProtocol, Routerable
         /// Inputs setup
         self.pushLessonsTrigger.asObservable()
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [unowned self] _ in
+            .subscribe(onNext: { _ in
                 let lessonsConfigurator: LessonsConfiguratorProtocol = LessonsConfigurator()
-                lessonsConfigurator.configureWithPush(from: self.view)
+                lessonsConfigurator.configureWithMove()
             })
             .disposed(by: self.disposeBag)
     }

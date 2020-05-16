@@ -98,18 +98,18 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         guard let textViewResponder = self.view.getSelectedTextView() else { return }
-        guard let positionResponder = self.view.getPositionOfView(view: textViewResponder) else { return }
+        guard let positionResponder = self.view.getPositionOfSubview(subview: textViewResponder) else { return }
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let paddingTextView = self.view.frame.height - (positionResponder.origin.y + positionResponder.height)
-            if keyboardSize.height > paddingTextView + 20 {
-                self.view.frame.origin.y -= (keyboardSize.height - paddingTextView) + 20
+            let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
+            let paddingTextView = self.view.frame.height + navigationBarHeight - (positionResponder.origin.y + positionResponder.height)
+            if keyboardSize.height > paddingTextView + Size.large.indent {
+                self.view.frame.origin.y -= (keyboardSize.height - paddingTextView) + Size.large.indent
             }
         }
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-        print(self.view.frame.origin.y)
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
@@ -136,7 +136,7 @@ extension CalendarViewController: UIPickerViewDelegate {
     }
 }
 
-// MARK: - Text Field Delegate
+// MARK:- Text Field Delegate
 extension CalendarViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -22,6 +22,11 @@ final class LessonsConfigurator: LessonsConfiguratorProtocol {
         from.present(nav, animated: true)
     }
     
+    func configureWithMove() {
+        let view = configure()
+        view.move(animated: true)
+    }
+    
     func configure() -> LessonsViewController {
         let viewController = LessonsViewController()
         let interactor: LessonsInteractorProtocol = LessonsInteractor()

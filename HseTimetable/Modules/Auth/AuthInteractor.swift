@@ -100,5 +100,5 @@ extension AuthInteractor {
     }
 }
 
-// MARK: - Interactorable
+// MARK:- Interactorable
 extension AuthInteractor: Interactorable {}

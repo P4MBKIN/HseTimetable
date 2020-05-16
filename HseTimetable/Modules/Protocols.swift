@@ -12,6 +12,7 @@ import Foundation
 protocol Viewable: class {
     func push(_ vc: UIViewController, animated: Bool)
     func present(_ vc: UIViewController, animated: Bool)
+    func move(animated: Bool)
     func pop(animated: Bool)
     func dismiss(animated: Bool)
     func dismiss(animated: Bool, completion:  @escaping (() -> Void))
@@ -37,13 +38,31 @@ protocol Configuratorable: class {
 }
 
 extension Viewable where Self: UIViewController {
-    func push(_ vc: UIViewController, animated: Bool) {self.navigationController?.pushViewController(vc, animated: animated)}
-    func present(_ vc: UIViewController, animated: Bool) {self.present(vc, animated: animated, completion: nil)}
-    func pop(animated: Bool) {self.navigationController?.popViewController(animated: animated)}
-    func dismiss(animated: Bool) {self.dismiss(animated: animated, completion: nil)}
-    func dismiss(animated: Bool, completion: @escaping (() -> Void)) {self.dismiss(animated: animated, completion: completion)}
-    var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait}
-    var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {return .portrait}
+    
+    func push(_ vc: UIViewController, animated: Bool) {
+        self.navigationController?.pushViewController(vc, animated: animated)
+    }
+    func present(_ vc: UIViewController, animated: Bool) {
+        self.present(vc, animated: animated, completion: nil)
+    }
+    func move(animated: Bool) {
+        if let currentVc = UIApplication.shared.keyWindow?.rootViewController {
+            currentVc.dismiss(animated: animated, completion: nil)
+        }
+        UIApplication.shared.keyWindow?.rootViewController = UINavigationController(rootViewController: self)
+    }
+    func pop(animated: Bool) {
+        self.navigationController?.popViewController(animated: animated)
+    }
+    func dismiss(animated: Bool) {
+        self.dismiss(animated: animated, completion: nil)
+    }
+    func dismiss(animated: Bool, completion: @escaping (() -> Void)) {
+        self.dismiss(animated: animated, completion: completion)
+    }
+    
+    var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
+    var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation { return .portrait }
 }
 
 extension Routerable {

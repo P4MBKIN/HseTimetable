@@ -64,26 +64,28 @@ extension UIView {
         return nil
     }
     
-    func getPositionOfView(view: UIView) -> CGRect? {
-        func getPositionOfSubview(firstView: UIView, secondView: UIView, view: UIView) -> CGRect? {
-            for subview in secondView.subviews as [UIView] {
-                if subview == view { return firstView.convert(subview.frame, from: secondView) }
-                if let position = getPositionOfSubview(firstView: secondView, secondView: subview, view: view) {
-                    return firstView.convert(position, from: secondView)
-                }
-            }
-            
-            return nil
+    func getPositionOfSubview(subview: UIView) -> CGRect? {
+        guard checkViewIsSubview(view: subview) else { return nil }
+        guard var secondView = subview.superview else { return nil }
+        var currentView: UIView = subview
+        var position: CGRect = subview.frame
+        
+        while secondView != self {
+            guard let firstView = secondView.superview else { return nil }
+            currentView = secondView
+            secondView = firstView
+            position = secondView.convert(position, from: currentView)
         }
         
+        return position
+    }
+    
+    private func checkViewIsSubview(view: UIView) -> Bool {
         for subview in self.subviews as [UIView] {
-            if subview == view { return subview.frame }
-            if let position = getPositionOfSubview(firstView: view, secondView: subview, view: view) {
-                return position
-            }
+            if subview == view { return true }
+            if checkViewIsSubview(view: subview) { return true }
         }
-        
-        return nil
+        return false
     }
     
     private func getTextViewsInView(view: UIView) -> [UIView] {

@@ -21,6 +21,7 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     let viewDidLoadTrigger = PublishSubject<Void>()
     let refreshControlTrigger = PublishSubject<Void>()
     let didSelectLessonTrigger = PublishSubject<(Int, EventSegueType)>()
+    let logoutTrigger = PublishSubject<Void>()
     
     /// Outputs
     var opens = [Bool]()
@@ -51,6 +52,10 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
             .bind(to: self.dependencies.router.inputs.presentLessonEvent)
             .disposed(by: self.disposeBag)
         
+        self.logoutTrigger.asObserver()
+            .bind(to: self.dependencies.interactor.inputs.removeStudentTrigger)
+            .disposed(by: self.disposeBag)
+        
         /// Outputs setup
         self.dependencies.interactor.outputs.searchLessonsResponse.asObservable()
             .subscribe(onNext: { [weak self] list in
@@ -62,6 +67,11 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
         self.dependencies.interactor.outputs.errorResponse.asObservable()
             .bind(to: self.error)
             .disposed(by: self.disposeBag)
+        
+        self.dependencies.interactor.outputs.removeStudentResponse.asObserver()
+            .bind(to: self.dependencies.router.inputs.pushAuthTrigger)
+            .disposed(by: self.disposeBag)
+        
     }
 }
 

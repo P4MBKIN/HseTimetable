@@ -57,7 +57,7 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: Size.small.font, weight: .bold)
+        label.font = .systemFont(ofSize: Size.small.font, weight: .bold)
         return label
     }()
     
@@ -66,7 +66,7 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .center
         label.numberOfLines = 1
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: Size.large.font, weight: .regular)
+        label.font = .systemFont(ofSize: Size.large.font, weight: .regular)
         return label
     }()
     
@@ -75,7 +75,7 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .center
         label.numberOfLines = 1
         label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: Size.large.font, weight: .regular)
+        label.font = .systemFont(ofSize: Size.large.font, weight: .regular)
         return label
     }()
     
@@ -83,15 +83,15 @@ class LessonsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 1
-        label.textColor = .sortBlue
-        label.font = UIFont.systemFont(ofSize: Size.common.font, weight: .bold)
+        label.textColor = .softBlue
+        label.font = .systemFont(ofSize: Size.common.font, weight: .bold)
         return label
     }()
     
     private let auditoriumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "pin")
-        imageView.tintColor = .sortBlue
+        imageView.tintColor = .softBlue
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -101,7 +101,7 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: Size.common.font, weight: .regular)
+        label.font = .systemFont(ofSize: Size.common.font, weight: .regular)
         return label
     }()
     
@@ -110,14 +110,14 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 3
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: Size.common.font, weight: .bold)
+        label.font = .systemFont(ofSize: Size.common.font, weight: .bold)
         return label
     }()
     
     private let adressImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mappin.and.ellipse")
-        imageView.tintColor = .sortBlue
+        imageView.tintColor = .softBlue
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -127,7 +127,7 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: Size.small.font, weight: .regular)
+        label.font = .systemFont(ofSize: Size.small.font, weight: .regular)
         return label
     }()
     
@@ -136,14 +136,14 @@ class LessonsTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: Size.small.font, weight: .regular)
+        label.font = .systemFont(ofSize: Size.small.font, weight: .regular)
         return label
     }()
     
     private let lecturerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "person")
-        imageView.tintColor = .sortBlue
+        imageView.tintColor = .softBlue
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -217,7 +217,7 @@ class LessonsTableViewCell: UITableViewCell {
             softColor = .softRed
         case .medium:
             lightColor = .lightBlue
-            softColor = .sortBlue
+            softColor = .softBlue
         case .low:
             lightColor = .lightGreen
             softColor = .softGreen
