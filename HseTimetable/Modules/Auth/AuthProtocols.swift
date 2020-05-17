@@ -16,6 +16,7 @@ protocol AuthViewProtocol: class {
 
 /// VIEW -> PRESENTER
 protocol AuthPresenterInputsProtocol: class {
+    var viewDidLoadTrigger: PublishSubject<Void> { get }
     var emailChangedTrigger: PublishSubject<String?> { get }
     var signInTrigger: PublishSubject<Void> { get }
 }
@@ -24,6 +25,7 @@ protocol AuthPresenterInputsProtocol: class {
 protocol AuthPresenterOutputsProtocol: class {
     var isSuccess: PublishSubject<Bool> { get }
     var auth: PublishSubject<Auth> { get }
+    var warningConnection: PublishSubject<Void> { get }
 }
 
 typealias AuthPresenterDependencies = (
@@ -41,6 +43,7 @@ protocol AuthPresenterProtocol: class {
 protocol AuthInteractorInputsProtocol: class {
     var searchStudentTrigger: PublishSubject<String> { get }
     var saveStudentTrigger: PublishSubject<Auth> { get }
+    var checkConnectionTrigger: PublishSubject<Void> { get }
 }
 
 /// INTERACTOR -> PRESENTER
@@ -48,6 +51,7 @@ protocol AuthInteractorOutputsProtocol: class {
     var searchStudentResponse: PublishSubject<Auth> { get }
     var saveStudentResponse: PublishSubject<Void> { get }
     var errorResponse: PublishSubject<Error> { get }
+    var connectionResponse: PublishSubject<Bool> { get }
 }
 
 protocol AuthInteractorProtocol: class {
@@ -66,8 +70,5 @@ protocol AuthRouterProtocol: class {
 
 /// ANOTHER MODULE -> CONFIGURATOR
 protocol AuthConfiguratorProtocol: class {
-    func configureWithPush(from: Viewable)
-    func configureWithPresent(from: Viewable)
     func configureWithMove()
-    func configure() -> AuthViewController
 }

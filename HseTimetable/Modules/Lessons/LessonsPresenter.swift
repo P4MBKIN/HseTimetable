@@ -27,6 +27,7 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
     var opens = [Bool]()
     let lessons = BehaviorRelay<[Lesson]>(value: [])
     let error = PublishSubject<Error>()
+    let warningConnection = PublishSubject<Void>()
     
     private var daysOffset: Int
     
@@ -40,6 +41,10 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
         /// Inputs setup
         self.viewDidLoadTrigger.asObserver()
             .bind(to: self.dependencies.interactor.inputs.dataBaseLessonsTrigger)
+            .disposed(by: self.disposeBag)
+        
+        self.viewDidLoadTrigger.asObserver()
+            .bind(to: self.dependencies.interactor.inputs.checkConnectionTrigger)
             .disposed(by: self.disposeBag)
         
         self.refreshControlTrigger.asObserver()
@@ -72,6 +77,11 @@ final class LessonsPresenter: LessonsPresenterProtocol, LessonsPresenterInputsPr
             .bind(to: self.dependencies.router.inputs.pushAuthTrigger)
             .disposed(by: self.disposeBag)
         
+        self.dependencies.interactor.outputs.connectionResponse.asObserver()
+            .filter{ !$0 }
+            .withLatestFrom(Observable.just(()))
+            .bind(to: self.warningConnection)
+            .disposed(by: self.disposeBag)
     }
 }
 

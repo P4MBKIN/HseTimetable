@@ -68,7 +68,7 @@ extension BaseResultError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .nilDataError: return "Data is nil!!!"
+        case .nilDataError: return "Получено пустое значение"
         }
     }
 }

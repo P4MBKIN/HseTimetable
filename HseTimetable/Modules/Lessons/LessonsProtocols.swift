@@ -27,6 +27,7 @@ protocol LessonsPresenterOutputsProtocol: class {
     var opens: [Bool] { get set }
     var lessons: BehaviorRelay<[Lesson]> { get }
     var error: PublishSubject<Error> { get }
+    var warningConnection: PublishSubject<Void> { get }
 }
 
 typealias LessonsPresenterDependencies = (
@@ -45,6 +46,7 @@ protocol LessonsInteractorInputsProtocol: class {
     var dataBaseLessonsTrigger: PublishSubject<Void> { get }
     var searchLessonsTrigger: PublishSubject<Int> { get }
     var removeStudentTrigger: PublishSubject<Void> { get }
+    var checkConnectionTrigger: PublishSubject<Void> { get }
 }
 
 /// INTERACTOR -> PRESENTER
@@ -52,6 +54,7 @@ protocol LessonsInteractorOutputsProtocol: class {
     var searchLessonsResponse: PublishSubject<[Lesson]> { get }
     var removeStudentResponse: PublishSubject<Void> { get }
     var errorResponse: PublishSubject<Error> { get }
+    var connectionResponse: PublishSubject<Bool> { get }
 }
 
 protocol LessonsInteractorProtocol: class {
@@ -71,8 +74,5 @@ protocol LessonsRouterProtocol: class {
 
 /// ANOTHER MODUL -> CONFIGURATOR
 protocol LessonsConfiguratorProtocol: class {
-    func configureWithPush(from: Viewable)
-    func configureWithPresent(from: Viewable)
     func configureWithMove()
-    func configure() -> LessonsViewController
 }

@@ -11,23 +11,12 @@ import Foundation
 
 final class AuthConfigurator: AuthConfiguratorProtocol {
     
-    func configureWithPush(from: Viewable) {
-        let view = configure()
-        from.push(view, animated: true)
-    }
-    
-    func configureWithPresent(from: Viewable) {
-        let view = configure()
-        let nav = UINavigationController(rootViewController: view)
-        from.present(nav, animated: true)
-    }
-    
     func configureWithMove() {
         let view = configure()
         view.move(animated: true)
     }
     
-    func configure() -> AuthViewController {
+    private func configure() -> AuthViewController {
         let viewController = AuthViewController()
         let interactor: AuthInteractorProtocol = AuthInteractor()
         let router: AuthRouterProtocol = AuthRouter(view: viewController)

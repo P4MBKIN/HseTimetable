@@ -20,16 +20,19 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
     let dataBaseLessonsTrigger = PublishSubject<Void>()
     let searchLessonsTrigger = PublishSubject<Int>()
     let removeStudentTrigger = PublishSubject<Void>()
+    let checkConnectionTrigger = PublishSubject<Void>()
     
     /// Outputs
     let searchLessonsResponse = PublishSubject<[Lesson]>()
     let removeStudentResponse = PublishSubject<Void>()
     let errorResponse = PublishSubject<Error>()
+    let connectionResponse = PublishSubject<Bool>()
     
     private let dbGetAction: Action<Void, [Lesson]>
     private let dbUpdateAction: Action<[Lesson], Void>
     private let searchLessonsAction: Action<Int, [Lesson]>
     private let removeStrudentAction: Action<Void, Void>
+    private let checkConnectionAction: Action<Void, Bool>
     
     private let disposeBag = DisposeBag()
     
@@ -41,6 +44,7 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         self.dbUpdateAction = Action { lessons in return LessonsInteractor.updateLessonsToDB(lessons: lessons) }
         self.searchLessonsAction = Action { daysOffset in return LessonsInteractor.getLessonsFromNetwork(daysOffset: daysOffset) }
         self.removeStrudentAction = Action { return LessonsInteractor.removeStudent() }
+        self.checkConnectionAction = Action { return LessonsInteractor.checkConnection() }
         
         /// Inputs setup
         self.dataBaseLessonsTrigger.asObserver()
@@ -53,6 +57,10 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         
         self.removeStudentTrigger.asObserver()
             .bind(to: self.removeStrudentAction.inputs)
+            .disposed(by: self.disposeBag)
+        
+        self.checkConnectionTrigger.asObserver()
+            .bind(to: self.checkConnectionAction.inputs)
             .disposed(by: self.disposeBag)
         
         /// Outputs setup
@@ -70,6 +78,10 @@ final class LessonsInteractor: LessonsInteractorProtocol, LessonsInteractorInput
         
         self.removeStrudentAction.elements.asObservable()
             .bind(to: self.removeStudentResponse)
+            .disposed(by: self.disposeBag)
+        
+        self.checkConnectionAction.elements.asObservable()
+            .bind(to: self.connectionResponse)
             .disposed(by: self.disposeBag)
         
         /// Errors setup
@@ -158,6 +170,17 @@ extension LessonsInteractor {
             let defaults = UserDefaults.standard
             defaults.removeObject(forKey: "studentId")
             observer(.success(()))
+            return Disposables.create()
+        }
+    }
+    
+    private static func checkConnection() -> Single<Bool> {
+        return Single<Bool>.create{ observer in
+            NetStatus.shared.stopMonitoring()
+            NetStatus.shared.netStatusChangeHandler = {
+                observer(.success(NetStatus.shared.isConnected))
+            }
+            NetStatus.shared.startMonitoring()
             return Disposables.create()
         }
     }

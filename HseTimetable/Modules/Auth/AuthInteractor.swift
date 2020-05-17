@@ -18,14 +18,17 @@ final class AuthInteractor: AuthInteractorProtocol, AuthInteractorInputsProtocol
     /// Inputs
     let searchStudentTrigger = PublishSubject<String>()
     let saveStudentTrigger = PublishSubject<Auth>()
+    let checkConnectionTrigger = PublishSubject<Void>()
     
     /// Outputs
     let searchStudentResponse = PublishSubject<Auth>()
     let saveStudentResponse = PublishSubject<Void>()
     let errorResponse = PublishSubject<Error>()
+    let connectionResponse = PublishSubject<Bool>()
     
     private let searchStudentAction: Action<String, Auth>
     private let saveStudentAction: Action<Auth, Void>
+    private let checkConnectionAction: Action<Void, Bool>
     
     private let disposeBag = DisposeBag()
     
@@ -34,6 +37,7 @@ final class AuthInteractor: AuthInteractorProtocol, AuthInteractorInputsProtocol
     required init() {
         self.searchStudentAction = Action { email in return AuthInteractor.searchStudent(email: email) }
         self.saveStudentAction = Action { student in return AuthInteractor.saveStudent(student: student) }
+        self.checkConnectionAction = Action { return AuthInteractor.checkConnection() }
         
         /// Inputs setup
         self.searchStudentTrigger.asObservable()
@@ -54,6 +58,10 @@ final class AuthInteractor: AuthInteractorProtocol, AuthInteractorInputsProtocol
             .bind(to: self.saveStudentAction.inputs)
             .disposed(by: self.disposeBag)
         
+        self.checkConnectionTrigger.asObserver()
+            .bind(to: self.checkConnectionAction.inputs)
+            .disposed(by: self.disposeBag)
+        
         /// Outputs setup
         self.searchStudentAction.elements.asObservable()
             .bind(to: self.searchStudentResponse)
@@ -61,6 +69,10 @@ final class AuthInteractor: AuthInteractorProtocol, AuthInteractorInputsProtocol
         
         self.saveStudentAction.elements.asObservable()
             .bind(to: self.saveStudentResponse)
+            .disposed(by: self.disposeBag)
+        
+        self.checkConnectionAction.elements.asObservable()
+            .bind(to: self.connectionResponse)
             .disposed(by: self.disposeBag)
         
         /// Errors setup
@@ -95,6 +107,17 @@ extension AuthInteractor {
             let defaults = UserDefaults.standard
             defaults.set(student.studentId, forKey: "studentId")
             observer(.success(()))
+            return Disposables.create()
+        }
+    }
+    
+    private static func checkConnection() -> Single<Bool> {
+        return Single<Bool>.create{ observer in
+            NetStatus.shared.stopMonitoring()
+            NetStatus.shared.netStatusChangeHandler = {
+                observer(.success(NetStatus.shared.isConnected))
+            }
+            NetStatus.shared.startMonitoring()
             return Disposables.create()
         }
     }

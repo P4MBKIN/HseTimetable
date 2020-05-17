@@ -18,6 +18,19 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var alarmPickerView: UIPickerView!
     
+    lazy var alertView: AlertView = {
+        let view = AlertView()
+        view.delegate = self
+        return view
+    }()
+    
+    var visualEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var presenter: CalendarPresenterProtocol!
     
     private  let alarmIntervalNames: [(TimeInterval?, String)] = [
@@ -75,15 +88,63 @@ final class CalendarViewController: UIViewController, CalendarViewProtocol {
             .disposed(by: self.disposeBag)
         
         self.presenter.outputs.error.asObserver()
+            .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] error in
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self?.present(alert, animated: true)
+                self?.alertView.setup(
+                    title: "Внимание!",
+                    message: error.localizedDescription,
+                    leftButtonTitle: nil,
+                    rightButtonTitle: "Skip",
+                    alertId: .error
+                )
+                self?.animateInAlert()
             })
             .disposed(by: self.disposeBag)
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
+    }
+    
+    private func setVisualEffect() {
+        self.navigationController?.view.addSubview(self.visualEffectView)
+        self.visualEffectView.snp.remakeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setAlert() {
+        self.navigationController?.view.addSubview(self.alertView)
+        self.alertView.snp.remakeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    // MARK:- Animations
+    private func animateInAlert() {
+        setVisualEffect()
+        self.visualEffectView.alpha = 0.0
+        
+        setAlert()
+        self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.alertView.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.alpha = 1.0
+            self.alertView.alpha = 1.0
+            self.alertView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    private func animateOutAlert(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.visualEffectView.alpha = 0.0
+            self.alertView.alpha = 0.0
+            self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { _ in
+            self.visualEffectView.removeFromSuperview()
+            self.alertView.removeFromSuperview()
+            completion?()
+        }
     }
     
     // MARK:- Views events
@@ -142,6 +203,18 @@ extension CalendarViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
+    }
+}
+
+// MARK:- Alert Delegate
+extension CalendarViewController: AlertDelegate {
+    
+    func rightButtonTapped(from alertId: AlertId) {
+        switch alertId {
+        case .error:
+            animateOutAlert(completion: nil)
+        default: break
+        }
     }
 }
 

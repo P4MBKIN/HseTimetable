@@ -92,13 +92,22 @@ extension EventService: ReminderEventProtocol {
     
     private func checkReminderEventAlreadyExists(data: ReminderEventData) -> Bool {
         var isExist: Bool = false
-        let predicate = self.eventStore.predicateForReminders(in: nil)
+        
+        var predicate: NSPredicate
+        if let calendar = self.eventStore.defaultCalendarForNewReminders() {
+            predicate = self.eventStore.predicateForReminders(in: [calendar])
+        } else {
+            predicate = self.eventStore.predicateForReminders(in: nil)
+        }
+        
         let group = DispatchGroup()
         group.enter()
         self.eventStore.fetchReminders(matching: predicate) { reminders in
             if let reminders = reminders, reminders.contains(where: { $0.title == data.title }) { isExist = true }
             group.leave()
         }
+        group.wait()
+        
         return isExist
     }
     
@@ -123,9 +132,9 @@ extension EventServiceError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .eventKitDenied: return "EventServiceError - EventKit access denied!!!"
-        case .eventCalendarAlreadyExists: return "EventServiceError - Calendar event already exists!!!"
-        case .eventReminderAlreadyExists: return "EventServiceError - Reminder event already exists!!!"
+        case .eventKitDenied: return "EventKit отказано в доступе"
+        case .eventCalendarAlreadyExists: return "Событие в календаре уже существует"
+        case .eventReminderAlreadyExists: return "Событие в напоминаниях уже существует"
         }
     }
 }

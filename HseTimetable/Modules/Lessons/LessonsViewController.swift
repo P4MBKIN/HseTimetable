@@ -99,11 +99,30 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         self.presenter.outputs.error.asObserver()
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] error in
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self?.present(alert, animated: true)
+                self?.alertView.setup(
+                    title: "Внимание!",
+                    message: error.localizedDescription,
+                    leftButtonTitle: nil,
+                    rightButtonTitle: "Skip",
+                    alertId: .error
+                )
+                self?.animateInAlert()
             })
             .disposed(by: self.disposeBag)
+        
+        self.presenter.outputs.warningConnection.asObserver()
+        .observeOn(MainScheduler.asyncInstance)
+        .subscribe(onNext: { [weak self] _ in
+            self?.alertView.setup(
+                title: "Внимание!",
+                message: "Отсутствует сетевое подключение!\nПроверьте возможность доступа в интернет",
+                leftButtonTitle: nil,
+                rightButtonTitle: "OK",
+                alertId: .warning
+            )
+            self?.animateInAlert()
+        })
+        .disposed(by: self.disposeBag)
         
         // First view load
         self.presenter.inputs.viewDidLoadTrigger.onNext(())
@@ -169,7 +188,7 @@ final class LessonsViewController: UIViewController, LessonsViewProtocol {
         }) { _ in
             self.visualEffectView.removeFromSuperview()
             self.alertView.removeFromSuperview()
-            if let completion = completion { completion() }
+            completion?()
         }
     }
     
@@ -278,9 +297,12 @@ extension LessonsViewController: AlertDelegate {
     
     func rightButtonTapped(from alertId: AlertId) {
         switch alertId {
+        case .error:
+            animateOutAlert(completion: nil)
+        case .warning:
+            animateOutAlert(completion: nil)
         case .logout:
             animateOutAlert(completion: { self.presenter.inputs.logoutTrigger.onNext(()) })
-        default: break
         }
     }
 }

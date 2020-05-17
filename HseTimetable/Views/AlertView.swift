@@ -16,7 +16,8 @@ protocol AlertDelegate {
 
 enum AlertId: Int {
     case error = 0
-    case logout = 1
+    case warning = 1
+    case logout = 2
 }
 
 class AlertView: UIView {

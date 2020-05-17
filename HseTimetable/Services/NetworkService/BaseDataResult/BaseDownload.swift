@@ -47,13 +47,13 @@ extension DownloadTaskError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .nilDataError: return "DownloadTaskError - Data is nil!!!"
-        case .requestError(let error): return "DownloadTaskError - Request error: \(error)!!!"
-        case .responseError: return "DownloadTaskError - Response error!!!"
-        case .serverError(let status): return "DownloadTaskError - Server error: \(status)!!!"
-        case .getMineError: return "DownloadTaskError - Could not get MIME type!!!"
-        case .wrongMineError(let mine): return "DownloadTaskError - Wrong MIME type: \(mine)!!!"
-        case .jsonError(let error): return "DownloadTaskError - JSON error: \(error)!!!"
+        case .nilDataError: return "Получено пустое значение"
+        case .requestError(let error): return "Ошибка в запросе: \(error)"
+        case .responseError: return "Ошибка в отклике"
+        case .serverError(let status): return "Ошибка от сервера: \(status)"
+        case .getMineError: return "Не получен MIME тип"
+        case .wrongMineError(let mine): return "Неправильный MIME тип: \(mine)"
+        case .jsonError(let error): return "Ошибка JSON: \(error)"
         }
     }
 }
