@@ -30,20 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
             authConfigurator.configureWithMove()
         }
-        
-//        guard let windowScene = (scene as? UIWindowScene) else { return }
-//        self.window = UIWindow(windowScene: windowScene)
-//        var viewController: UIViewController
-//        if UserDefaults.standard.object(forKey: "studentId") != nil {
-//            let lessonsConfigurator: LessonsConfiguratorProtocol = LessonsConfigurator()
-//            viewController = lessonsConfigurator.configure()
-//        } else {
-//            let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
-//            viewController = authConfigurator.configure()
-//        }
-//        let navigationController = UINavigationController(rootViewController: viewController)
-//        self.window?.rootViewController = navigationController
-//        self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

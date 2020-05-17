@@ -27,18 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             authConfigurator.configureWithMove()
         }
         
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        var viewController: UIViewController
-//        if UserDefaults.standard.object(forKey: "studentId") != nil {
-//            let lessonsConfigurator: LessonsConfiguratorProtocol = LessonsConfigurator()
-//            viewController = lessonsConfigurator.configure()
-//        } else {
-//            let authConfigurator: AuthConfiguratorProtocol = AuthConfigurator()
-//            viewController = authConfigurator.configure()
-//        }
-//        let navigationController = UINavigationController(rootViewController: viewController)
-//        self.window?.rootViewController = navigationController
-//        self.window?.makeKeyAndVisible()
         return true
     }
 
