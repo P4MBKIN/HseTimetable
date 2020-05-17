@@ -26,6 +26,9 @@ extension NetworkService: NetworkLessonsServiceProtocol {
         formatter.dateFormat = "yyyy-MM-dd"
         params["start"] = formatter.string(from: dateFrom)
         
+//        params["student"] = "165773"
+//        params["start"] = "2019-12-14"
+        
         BaseDataResult.lessons.requestDataResult(params: params, addHeaders: nil) { (data, error) in
             guard let data = data else { return completion(nil, nil, BaseResultError.nilDataError) }
             guard error == nil else {
