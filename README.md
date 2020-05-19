@@ -1,10 +1,10 @@
 # HseTimetable
 
-![](Screenshots/photo/photo_auth_1_.png =200x) ![](Screenshots/photo/photo_lessons.png =200x)
+![](Screenshots/photo/photo_auth_1_.png) ![](Screenshots/photo/photo_lessons.png)
 
 ## Usage
 
-![](Screenshots/gif/gif_touches.gif =200x)
+![](Screenshots/gif/gif_touches.gif)
 
 # Requirements
 
