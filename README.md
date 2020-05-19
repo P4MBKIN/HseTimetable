@@ -1,6 +1,8 @@
 # HseTimetable
 
-![](Screenshots/photo/photo_auth_1_.png) ![](Screenshots/photo/photo_lessons.png)
+<img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_auth_1_.png" width="200">
+
+![](Screenshots/photo/photo_auth_1_.png)
 
 ## Usage
 
