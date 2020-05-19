@@ -3,8 +3,8 @@
 <div>
  <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_auth_1.jpg" height="400" alt=""  /> 
  <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_lessons.jpg" height="400" alt=""  />
- <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_auth.gif" height="420" alt="" />
- <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_touches.gif" height="420" alt="" />
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_auth.gif" height="410" alt="" />
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_touches.gif" height="410" alt="" />
 </div>
 
 ## Usage
