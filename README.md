@@ -7,6 +7,10 @@
  <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_touches.gif" height="403" alt="" />
 </div>
 
+| sync with server 	| add event to calendar 	| add event to reminder 	| voice commands 	|
+|:----------------:	|:---------------------:	|:---------------------:	|:--------------:	|
+|     &#10003;     	|        &#10003;       	|        &#10003;       	|    &#10003;    	|
+
 ## Usage
 
 
