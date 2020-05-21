@@ -21,18 +21,34 @@
 
 <br></br>
 
-## Usage
+# Usage
 
 Чтобы использовать основные функции приложения вы должны пройти авторизацию на стартовом экране.
 Для этого Вам потребуется ввести название своей университетской почты НИУ ВШЭ
 !Если Вы не являетесь учащимся или сотрудником данного ВУЗ'а Вы можете использовать название моей почты (poantonov@edu.hse.ru) (данная почта является корректной на 21.05.2020)
- <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_auth.gif" height="403" alt=""  />
- После чего Вы получите возможность обновить данные о расписании на ближайщие дни (если данные отсутствуют, значит на текущий период у выбранного пользователя нет занятий в ближайщее время)
- Для тестирования Вы можете раскомментировать следующий код, чтобы получить расписание актуальное для моего пользователя на 2019-12-14:
+
+<br></br>
+
+<img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_auth.gif" height="403" alt=""  />
+
+<br></br>
+
+После чего Вы получите возможность обновить данные о расписании на ближайщие дни (если данные отсутствуют, значит на текущий период у выбранного пользователя нет занятий в ближайщее время)
+Для тестирования Вы можете раскомментировать следующий код, чтобы получить расписание актуальное для моего пользователя на 2019-12-14:
 ```
 params["student"] = "165773"
 params["start"] = "2019-12-14"
 ```
+<br></br>
+
+<div>
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_lessons_empty.jpg" height="400" alt=""  /> 
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_lessons.jpg" height="400" alt=""  />
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/photo/photo_lessons_open_1.jpg" height="400" alt=""  />
+ <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/gif/gif_touches.gif" height="403" alt=""  />
+</div>
+
+# Technologies
 
 
 # Requirements
