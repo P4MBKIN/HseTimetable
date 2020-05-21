@@ -40,7 +40,7 @@ params["start"] = "2019-12-14"
 
 # Technologies
 
-- Architecture - VIPER+Rx+SOA (была выбрана именно связка VIPER с Rx потому что это уменьшает связность компонент в модуле и делает более удобным взаимодействие с сетью и с внутренней БД, нежели чем в обычном VIPER)
+- Architecture - VIPER+Rx+SOA (была выбрана именно связка VIPER с Rx, потому что это уменьшает связность компонент в модуле и делает более удобным взаимодействие с сетью и с внутренней БД, нежели чем в обычном VIPER)
 <br></br>
 <div>
  <img src="https://raw.githubusercontent.com/P4MBKIN/HseTimetable/master/Screenshots/materials/viper_rx.jpg" width="600" alt=""  /> 
